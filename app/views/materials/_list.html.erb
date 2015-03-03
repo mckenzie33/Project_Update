@@ -1,0 +1,58 @@
+
+<div id="filterrific_results">
+	<div>
+	    <%= page_entries_info materials %>
+	</div>
+	<div class="span36">
+		<table class="table table-striped table-hover ">
+		<tbody> 
+		<thead>
+		    <tr>
+		      <th>Name</th>
+		      <th>Type</th>
+		      <th>Created at</th>
+		      <th>Show Material</th>
+		      <% if is_admin? %>
+		      <th></th>
+		      <th></th>
+		      <% end %>
+		    </tr>
+		</thead>
+
+		   
+		    <% @materials.each do |material| %>
+		    <tr>
+			<td><%= material.mat_name %></td>
+			<td><%= material.mat_type %></td>
+			<td><%= material.created_at %></td>
+			<td><%= material.updated_at %></td>
+			<td><%= link_to 'Show', material, class: "btn btn-large btn-primary"  %></td>
+			<% if is_admin? %>        
+			<td><%= link_to 'Edit', edit_material_path(material) %></td>
+			<td><%= link_to 'Destroy', material, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+			<% end %>
+			<% @files_groups = Testfile.where(:mat_name => material.mat_name) %>
+			
+		
+		      </tr>
+		    <% end %>
+		  </tbody>
+		</table>
+	</div>
+	<div data-positio="top">
+	<%= will_paginate materials %>
+	</div>
+	<br>
+	<h4 align="right">
+	  Export this table to:
+	  <%= link_to "CSV File", materials_path(format: "csv"), class: "btn btn-large btn-primary"  %> |
+	  <%= link_to "Excel File", materials_path(format: "xls"), class: "btn btn-large btn-primary"  %>
+	</h4>
+	<p align="left"><h4><%= link_to 'Add New Material', new_material_path %></h4>
+	<h4><%= link_to 'Add Material to Group', new_mat_membership_path %></h4>
+	<br>
+	</p>
+	<br>
+</div>
+
+

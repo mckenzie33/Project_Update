@@ -1,0 +1,14 @@
+<tr id="<%= log_item.id %>">
+
+<td>
+  <span class="content"><%= log_item.content %></span></td>
+  <td><span class="timestamp">
+   <%= time_ago_in_words(log_item.created_at) %> ago.
+  </span></td>
+ <% if current_user?(log_item.user) %>
+   <td><%= link_to "Delete Activity", log_item, method: :delete,
+                                   data: { confirm: "Are you sure?" },
+                                   title: log_item.content %>
+ <% end %>
+</td>
+</tr>

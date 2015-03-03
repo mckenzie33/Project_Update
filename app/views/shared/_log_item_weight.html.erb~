@@ -1,0 +1,28 @@
+<tr id="<%= log_item_weight.id %>">
+<td><span class="content"><%= log_item_weight.weight %></span></td>
+  <td><span class="timestamp">
+   <%= time_ago_in_words(log_item_weight.created_at) %> ago.
+  </span></td>
+ <% if current_user?(log_item_weight.user) %>
+   <td><%= link_to "Delete Weight Entry", log_item_weight, method: :delete,
+                                   data: { confirm: "Are you sure?" },
+                                   title: log_item_weight.weight %></td>
+ <% end %>
+</td>
+</tr>
+
+<tr id="<%= log_item_goal.id %>">
+
+  <td><span class="content"><%= log_item_goal.description %></span></td>
+   <td><span class="content"><%= log_item_goal.weight %></span></td>
+  <td><span class="timestamp">
+   <%= time_ago_in_words(log_item_goal.created_at) %> ago.
+  </span></td>
+ 		
+ <% if current_user?(log_item_goal.user) %>
+   <td><%= link_to "Delete Goal", log_item_goal, method: :delete,
+                                   data: { confirm: "Are you sure?" },
+                                   title: log_item_goal.description %></td>
+ <% end %>
+
+</tr>

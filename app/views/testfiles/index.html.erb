@@ -1,0 +1,48 @@
+<h1>Listing testfiles</h1>
+<div class="span35">
+<table class="table table-striped table-hover ">
+  <thead>
+    <tr>
+      <th>Filename</th>
+      <th>Material Type</th>
+      <th>Material Name</th>
+      <th>Group Name</th>
+      <th>View in Browser</th>
+      <th>Download File</th>
+      <th>Person in Charge</th>
+      <th>Test Location</th>
+      <th>Test Date</th>
+      <th>Uploaded by</th>
+      <th>Created at</th>
+      <th>Updated at</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @testfiles.each do |testfile| %>
+      <tr>
+	<td><%= testfile.filename %></td>        
+	<td><%= testfile.file_type %></td>
+	<td><%= testfile.mat_name %></td>
+        <td><%= testfile.groupname %></td>
+	<td><%= link_to File.basename(testfile.filename.url), testfile.filename_url %></td>
+        <td><%= link_to 'Download File', :action => 'download', :id => testfile.id %></td>
+	<td><%= testfile.person_in_charge %></td>
+	<td><%= testfile.test_location %></td>
+	<td><%= testfile.test_date %></td>
+        <td><%= testfile.uploaded_by %></td>
+	<td><%= testfile.created_at %></td>
+        <td><%= link_to 'Show', testfile %></td>
+        <td><%= link_to 'Edit', edit_testfile_path(testfile) %></td>
+        <td><%= link_to 'Destroy', testfile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+<br>
+
+<%= link_to 'New Testfile', new_testfile_path %>

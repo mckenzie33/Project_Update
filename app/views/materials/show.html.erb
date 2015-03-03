@@ -1,0 +1,21 @@
+<div class="jumbotron">
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @material.mat_name %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @material.mat_type %>
+</p>
+
+
+<% if is_admin? %>
+<%= link_to 'Edit', edit_material_path(@material) %>
+<% end %>
+<%= link_to 'Back', materials_path %>
+
+</div>
+<h1>Listing testfiles</h1>

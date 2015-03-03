@@ -1,0 +1,37 @@
+<%= form_for(@mat_membership) do |f| %>
+  <% if @mat_membership.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@mat_membership.errors.count, "error") %> prohibited this mat_membership from being saved:</h2>
+
+      <ul>
+      <% @mat_membership.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :mat_name %><br>
+    <%= f.select :mat_name, options_for_select(Material.all.map{|s|[s.mat_name]}) %>
+  </div>
+  <div class="field">
+    <%= f.label :group_name %><br>
+    <%= f.select :group_name, options_for_select(Group.all.map{|s|[s.groupname]}) %>
+  </div>
+  <div class="field">
+    <%= f.label :is_confirmed %><br>
+    <%= f.check_box :is_confirmed %>
+  </div>
+  <div class="field">
+    <%= f.label :requested_by %><br>
+    <%= f.text_field :requested_by, :value => current_user.name %>
+  </div>
+  <div class="field">
+    <%= f.label :comments %><br>
+    <%= f.text_field :comments %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Material:</strong>
+  <%= @testfile.mat_name %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @testfile.mat_type %>
+</p>
+
+<p>
+  <strong>Group:</strong>
+  <%= @testfile.groupname %>
+</p>
+
+<p>
+  <strong>Filename:</strong>
+  <%= @testfile.filename %>
+  <%= link_to File.basename(@testfile.filename.url), @testfile.filename_url %>
+</p>
+
+<p>
+  <strong>Uploaded by:</strong>
+  <%= @testfile.uploaded_by %>
+</p>
+
+<%= link_to 'Edit', edit_testfile_path(@testfile) %> |
+<%= link_to 'Back', testfiles_path %>

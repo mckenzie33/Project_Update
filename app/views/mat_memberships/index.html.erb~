@@ -1,0 +1,35 @@
+<h1>Listing mat_memberships</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Material</th>
+      <th>Group</th>
+      <th>Is confirmed</th>
+      <th>Requested by</th>
+      <th>Comments</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @mat_memberships.each do |mat_membership| %>
+      <tr>
+        <td><%= mat_membership.mat_name %></td>
+        <td><%= mat_membership.group_name %></td>
+        <td><%= mat_membership.is_confirmed %></td>
+        <td><%= mat_membership.requested_by %></td>
+        <td><%= mat_membership.comments %></td>
+        <td><%= link_to 'Show', mat_membership %></td>
+        <td><%= link_to 'Edit', edit_mat_membership_path(mat_membership) %></td>
+        <td><%= link_to 'Destroy', mat_membership, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Mat membership', new_mat_membership_path %>

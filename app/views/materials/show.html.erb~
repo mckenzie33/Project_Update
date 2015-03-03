@@ -1,0 +1,145 @@
+<div class="jumbotron">
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @material.mat_name %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @material.mat_type %>
+</p>
+
+<p>
+  <strong>Density:</strong>
+  <%= @material.density %> g/cm<sup>3</sup>
+</p>
+
+<p>
+  <strong>Elastic modulus:</strong>
+  <%= @material.elastic_modulus %> MPa
+</p>
+
+<p>
+  <strong>Shear modulus:</strong>
+  <%= @material.shear_modulus %> MPa
+</p>
+
+<p>
+  <strong>Poissons ratio:</strong>
+  <%= @material.poissons_ratio %>
+</p>
+
+<p>
+  <strong>Yield strength:</strong>
+  <%= @material.yield_strength %> MPa
+</p>
+
+<p>
+  <strong>Ultimate tensile strength:</strong>
+  <%= @material.ultimate_tensile_strength %> MPa
+</p>
+
+<p>
+  <strong>Ultimate total elongation:</strong>
+  <%= @material.ultimate_total_elongation %> %
+</p>
+
+<p>
+  <strong>Hardness value:</strong>
+  <%= @material.hardness_value %>
+</p>
+
+<p>
+  <strong>Melting point:</strong>
+  <%= @material.melting_point %> °C
+</p>
+
+<p>
+  <strong>Thermal expansion:</strong>
+  <%= @material.thermal_expansion %>
+</p>
+
+<p>
+  <strong>Thermal conductivity:</strong>
+  <%= @material.thermal_conductivity %> W/m-K
+</p>
+
+<p>
+  <strong>Specific heat:</strong>
+  <%= @material.specific_heat %> J/g-°C
+</p>
+
+<p>
+  <strong>Electrical resistivity:</strong>
+  <%= @material.electrical_resistivity %>  ohm-cm
+</p>
+
+<p>
+  <strong>Chemical composition:</strong>
+  <%= @material.chemical_composition %>
+</p>
+
+<p>
+  <strong>Confidence Level:</strong>
+  <%= @material.confidence_level %>
+</p>
+
+<% if is_admin? %>
+<%= link_to 'Edit', edit_material_path(@material) %>
+<% end %>
+<%= link_to 'Back', materials_path %>
+
+</div>
+<% if @testfiles.any? %>
+<h1>Listing testfiles</h1>
+
+<table class="table table-striped table-hover ">
+  <thead>
+    <tr>
+      <th>Filename</th>
+      <th>File Type</th>
+      <th>Material Name</th>
+      <th>Group Name</th>
+      <th>Comments</th>
+      <th>Uploaded by</th>
+      <th>Person in Charge</th>
+      <th>Test Location</th>
+      <th>Test Date</th>
+      <th>Created at</th>
+      <th>Updated at</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @testfiles.each do |testfile| %>
+      <tr>
+	<td><%= link_to File.basename(testfile.filename.url), testfile.filename_url %><br><%= link_to 'or Download File', :controller => 'testfiles', :action => 'download', :id => testfile.id %></td>        
+	<td><%= testfile.file_type %></td>	
+	<td><%= testfile.mat_name %></td>	
+	<td><%= testfile.groupname %></td>
+	<td><%= testfile.comments %></td>
+        <td><%= testfile.uploaded_by %></td>
+	<td><%= testfile.person_in_charge %></td>
+	<td><%= testfile.test_location %></td>
+	<td><%= testfile.test_date %></td>
+	<td><%= testfile.created_at %></td>
+	<td><%= testfile.updated_at %></td>
+        <td><%= link_to 'Show', testfile %></td>
+	<% if is_admin? or (testfile.person_in_charge == current_user.name) or (testfile.uploaded_by == current_user.name) %>
+        <td><%= link_to 'Edit', edit_testfile_path(testfile) %></td>
+        <td><%= link_to 'Destroy', testfile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+	<% end %>
+      </tr>
+    <% end %>
+  </tbody>
+
+</table>
+<%= link_to 'New Testfile', new_testfile_path %>
+<br>
+
+<% end %>

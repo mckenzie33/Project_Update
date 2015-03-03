@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Material:</strong>
+  <%= @mat_membership.material_id %>
+</p>
+
+<p>
+  <strong>Group:</strong>
+  <%= @mat_membership.group_id %>
+</p>
+
+<p>
+  <strong>Is confirmed:</strong>
+  <%= @mat_membership.is_confirmed %>
+</p>
+
+<p>
+  <strong>Requested by:</strong>
+  <%= @mat_membership.requested_by %>
+</p>
+
+<p>
+  <strong>Comments:</strong>
+  <%= @mat_membership.comments %>
+</p>
+
+<%= link_to 'Edit', edit_mat_membership_path(@mat_membership) %> |
+<%= link_to 'Back', mat_memberships_path %>

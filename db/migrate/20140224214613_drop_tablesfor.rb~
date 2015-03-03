@@ -1,0 +1,4 @@
+class DropTablesfor < ActiveRecord::Migration
+  def change
+  end
+end

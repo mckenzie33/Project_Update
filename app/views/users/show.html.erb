@@ -1,0 +1,24 @@
+
+<div class="jumbotron">
+		<span style="float: left; margin-right: 15px;">
+                  <%= image_tag(@user.avatar_url.to_s, :size => "200x200") %>
+                </span>
+		<h1><%= @user.name %></h1>
+		<h3><%= @user.email %></h3>
+		<p>This is your Dashboard! Choose what you want to do:</p>
+		<% if is_admin? %>
+			<p>YOU ARE AN ADMIN! BLOWIN UP, SON!!!!</p>
+		<% end %>
+		<div class="bs-example>
+		
+    </div>
+<br>
+
+
+
+
+
+
+
+
+

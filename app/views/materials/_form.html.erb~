@@ -1,0 +1,86 @@
+<%= form_for(@material) do |f| %>
+  <% if @material.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@material.errors.count, "error") %> prohibited this material from being saved:</h2>
+
+      <ul>
+      <% @material.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :material %><br>
+    <%= f.text_field :mat_name %>
+  </div>
+  <div class="field">
+    <%= f.label :mat_type %><br>
+    <%= f.select :mat_type, options_for_select(['Select One', 'Liquid', 'Metal', 'Misc', 'Mixture', 'Plastic', 'Rubber']) %>
+  </div>
+  <div class="field">
+    <%= f.label :density %> (g/cm<sup>3</sup>)<br>
+    <%= f.text_field :density %>
+  </div>
+  <div class="field">
+    <%= f.label :elastic_modulus %> (MPa)<br>
+    <%= f.text_field :elastic_modulus %>
+  </div>
+  <div class="field">
+    <%= f.label :shear_modulus %> (MPa)<br>
+    <%= f.text_field :shear_modulus %>
+  </div>
+  <div class="field">
+    <%= f.label :poissons_ratio %><br>
+    <%= f.text_field :poissons_ratio %>
+  </div>
+  <div class="field">
+    <%= f.label :yield_strength %> (MPa)<br>
+    <%= f.text_field :yield_strength %>
+  </div>
+  <div class="field">
+    <%= f.label :ultimate_tensile_strength %> (MPa)<br>
+    <%= f.text_field :ultimate_tensile_strength %>
+  </div>
+  <div class="field">
+    <%= f.label :ultimate_total_elongation %> (%)<br>
+    <%= f.text_field :ultimate_total_elongation %>
+  </div>
+  <div class="field">
+    <%= f.label :hardness_value %><br>
+    <%= f.text_field :hardness_value %>
+  </div>
+  <div class="field">
+    <%= f.label :melting_point %> (°C)<br>
+    <%= f.text_field :melting_point %>
+  </div>
+  <div class="field">
+    <%= f.label :thermal_expansion %> <br>
+    <%= f.text_field :thermal_expansion %>
+  </div>
+  <div class="field">
+    <%= f.label :thermal_conductivity %> (W/m-K)<br>
+    <%= f.text_field :thermal_conductivity %>
+  </div>
+  <div class="field">
+    <%= f.label :specific_heat %> (J/g-°C)<br>
+    <%= f.text_field :specific_heat %>
+  </div>
+  <div class="field">
+    <%= f.label :electrical_resistivity %> (ohm-cm)<br>
+    <%= f.text_field :electrical_resistivity %>
+  </div>
+  <div class="field">
+    <%= f.label :chemical_composition %><br>
+    <%= f.text_field :chemical_composition %>
+  </div>
+  <div class="field">
+    <%= f.label :confidence_level %><br>
+    (On a scale of 1-150 (10 for each property), how would you rate your confidence on the data.)
+    <%= f.text_field :confidence_level %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

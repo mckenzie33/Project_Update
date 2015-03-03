@@ -1,0 +1,49 @@
+<header class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="navbar-inner">
+	<div class="row">
+      
+	  
+	 <div class="container">
+	<ul class="nav pull-left">      
+	     <a class="navbar-brand" href='/'>Honda Materials</a>
+	  </ul>
+	<% if signed_in? %>
+				<ul class="nav navbar-nav navbar-right">
+					<li><%= link_to "Home", current_user %></li>
+	
+					<li id="fat-menu" class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+						Manage Database <b class="caret"></b>
+						</a>
+						<ul class="dropdown-menu">
+							<li><%= link_to "Add Material", new_material_path %></li>
+							<li><%= link_to "Search Materials", materials_path %></li>
+						</ul>
+					</li>
+					
+					<li id="fat-menu" class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+						Account <b class="caret"></b>
+						</a>
+						<ul class="dropdown-menu">
+							<li><%= link_to "Profile", current_user %></li>
+							<li><%= link_to "Edit Profile", edit_user_path(current_user) %></li>
+							<li class="divider"></li>
+							<li>
+								<%= link_to "Sign out", signout_path, method: "delete" %>
+							</li>
+						</ul>
+					</li>		
+				</ul>
+		<% else %>
+				<ul class="nav navbar-nav navbar-right">
+					<li><%= link_to "Home", root_path %></li>
+                    <li><%= link_to "Sign in", signin_path %></li>
+				</ul>
+	 
+	<% end %>
+	</div>
+      
+    </div>
+  </div>
+</header>

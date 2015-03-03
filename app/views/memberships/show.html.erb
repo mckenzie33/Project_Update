@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @membership.user_id %>
+</p>
+
+<p>
+  <strong>Group:</strong>
+  <%= @membership.group_id %>
+</p>
+
+<p>
+  <strong>Owner:</strong>
+  <%= @membership.owner %>
+</p>
+
+<p>
+  <strong>Comments:</strong>
+  <%= @membership.comments %>
+</p>
+
+<p>
+  <strong>Is Membership Confirmed:</strong>
+  <%= @membership.is_confirmed %>
+</p>
+<%= link_to 'Edit', edit_membership_path(@membership) %> |
+<%= link_to 'Back', memberships_path %>

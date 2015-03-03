@@ -1,0 +1,34 @@
+<div style="width: 100%; align:center; margin: 0 auto">
+<div class="container">
+	<div class="col-lg-6">
+		<div class="well"><h3>Create new Goal:</h3>
+		
+		<%= form_for(@goal) do |f| %>
+  
+		<div class="form-group">
+			<%= f.label "Enter Details:", class: "col-lg-2 control-label" %>
+	      		<div class="col-lg-10">
+				<%= f.text_area :description, placeholder: "Enter description for the Goal..." %>
+			</div>
+		</div>
+		<div class="form-group">
+			<%= f.label :weight, class: "col-lg-2 control-label" %>
+	      		<div class="col-lg-10">
+				<%= f.text_field :weight, placeholder: "Enter weight in lbs.." %>
+			</div>
+		</div>
+		
+  		<div class="form-group">
+			<div class="col-lg-3  col-lg-offset-2">
+                    		<%= f.submit "Post", class: "btn btn-large btn-primary" %>
+			</div></div>
+			<%= button_tag "Cancel", :type => 'button', :class => "btn btn-large btn-primary", :onclick => "location.href = '#{signup_path}'" %>
+		<% end %>
+		
+
+
+  </div>
+</div>
+</div>
+</div>
+

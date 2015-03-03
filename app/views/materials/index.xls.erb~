@@ -1,0 +1,51 @@
+<table class="table table-striped table-hover ">
+<tbody> 
+<thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Density (g/cm<sup>3</sup>)</th>
+      <th>Elastic modulus (MPa)</th>
+      <th>Shear modulus (MPa)</th>
+      <th>Poissons ratio</th>
+      <th>Yield strength (MPa)</th>
+      <th>Ultimate tensile strength (MPa)</th>
+      <th>Ultimate total elongation (%)</th>
+      <th>Hardness value</th>
+      <th>Melting point (°C)</th>
+      <th>Thermal expansion</th>
+      <th>Thermal conductivity (W/m-K)</th>
+      <th>Specific heat (J/g-°C)</th>
+      <th>Electrical resistivity (ohm-cm)</th>
+      <th>Chemical composition</th>
+      <th>Confidence Level</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+   
+    <% @materials.each do |material| %>
+      <tr>
+        <td><%= material.mat_name %></td>
+        <td><%= material.mat_type %></td>
+        <td><%= material.density %></td>
+	<td><%= material.elastic_modulus %></td>
+        <td><%= material.shear_modulus %></td>
+        <td><%= material.poissons_ratio %></td>
+        <td><%= material.yield_strength %></td>
+        <td><%= material.ultimate_tensile_strength %></td>
+        <td><%= material.ultimate_total_elongation %></td>
+        <td><%= material.hardness_value %></td>
+        <td><%= material.melting_point %></td>
+        <td><%= material.thermal_expansion %></td>
+        <td><%= material.thermal_conductivity %></td>
+        <td><%= material.specific_heat %></td>
+        <td><%= material.electrical_resistivity %></td>
+        <td><%= material.chemical_composition %></td>
+	<td><%= material.confidence_level %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

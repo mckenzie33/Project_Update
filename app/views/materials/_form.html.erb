@@ -1,0 +1,26 @@
+<!--new material addition page -->
+<%= form_for(@material) do |f| %>
+  <% if @material.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@material.errors.count, "error") %> prohibited this material from being saved:</h2>
+
+      <ul>
+      <% @material.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :material %><br>
+    <%= f.text_field :mat_name %>
+  </div>
+  <div class="field">
+    <%= f.label :mat_type %><br>
+    <%= f.select :mat_type, options_for_select(['Select One', 'Liquid', 'Metal', 'Misc', 'Mixture', 'Plastic', 'Rubber']) %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

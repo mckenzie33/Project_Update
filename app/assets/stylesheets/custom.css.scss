@@ -1,0 +1,148 @@
+@import "bootstrap";
+
+
+html {
+  overflow-y: scroll;
+}
+
+body {
+  padding-top: 60px;
+}
+
+section {
+  overflow: auto;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.center {
+  text-align: center;
+}
+
+.center h1 {
+  margin-bottom: 10px;
+}
+
+/* forms */
+
+input, textarea, select, .uneditable-input {
+  border: 1px solid #bbb;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+input {
+  height: auto !important;
+}
+
+#error_explanation {
+  color: #f00;
+  ul {
+    list-style: none;
+    margin: 0 0 18px 0;
+  }
+}
+
+.field_with_errors {
+  @extend .control-group;
+  @extend .error;
+}
+
+/* footer */
+
+footer {
+  margin-top: 45px;
+  padding-top: 5px;
+  border-top: 1px solid #eaeaea;
+  color: #999;
+}
+
+footer a {
+  color: #555;
+}
+
+footer a:hover {
+  color: #222;
+}
+
+footer small {
+  float: left;
+}
+
+footer ul {
+  float: right;
+  list-style: none;
+}
+
+footer ul li {
+  float: left;
+  margin-left: 10px;
+}
+
+
+body {
+padding-top: 80px;
+}
+h1 {
+margin-bottom: 30px
+}
+.carousel-control .icon-prev, .carousel-control .icon-next {
+   font-size: 100px;
+   position:absolute;
+   top: 200px
+}
+.carousel-inner .item .carousel-caption {
+position:absolute;
+top: 200px
+}
+.carousel-indicators {
+position: absolute;
+top: 400px;
+}
+.navbar {
+margin-bottom:0;
+}
+.navbar-nav>li>a {
+line-height: 50px;
+font-size: 16px
+}
+
+.container > h1 {
+text-align: center;
+}
+
+th {
+background-color: Silver;
+color: Black;
+z-index: 10;
+text-shadow: 1px 1px 1px #fff;
+font-size: 14px;
+}
+
+.badge {
+background-color: #428bca;
+color: #fff;
+font-size: 22px;
+}
+
+#map_canvas {
+        width: 400px;
+        height: 400px;
+}
+.socials {
+padding: 10px;
+}
+.centered-text {
+    text-align:center
+}   
+.span35 {  
+    height: auto !important;
+    overflow: scroll;	
+}
+.span36 {  
+    height: 500px;
+    overflow: scroll;	
+}
+

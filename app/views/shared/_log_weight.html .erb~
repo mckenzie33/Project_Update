@@ -1,0 +1,12 @@
+<% if @log_items_goals.any? %>
+ <table border="2">
+ <tr>
+   <th bgcolor="#2b2b2c"><font color="#ffffff"><h3>Goals</h3></font></th>
+ </tr>
+  <tr class="goals">
+   <%= render partial: 'shared/log_item_goal', collection: @log_items_goals %>
+  </tr>
+ </table>
+  <%= will_paginate @log_items_goals %>
+ 
+<% end %>

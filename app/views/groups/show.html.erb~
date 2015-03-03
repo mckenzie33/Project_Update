@@ -1,0 +1,172 @@
+<div class="jumbotron">
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Groupname:</strong>
+  <%= @group.groupname %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @group.description %>
+</p>
+
+<p>
+  <strong>Owner name:</strong>
+  <%= @group.owner_name %>
+</p>
+
+<p>
+  <strong>Owner email:</strong>
+  <%= @group.owner_email %>
+</p>
+
+<p>
+  <strong>Owner:</strong>
+  <%= @group.owner_id %>
+</p>
+
+<p>
+  <strong>Is public:</strong>
+  <%= @group.is_public %>
+</p>
+
+<%= link_to 'Edit', edit_group_path(@group) %> |
+<%= link_to 'Back', groups_path %>
+</div>
+
+<br>
+<h1>Listing materials</h1>
+<div class="span35">
+<table class="table table-striped table-hover ">
+<tbody> 
+<thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Density</th>
+      <th>Elastic modulus</th>
+      <th>Shear modulus</th>
+      <th>Poissons ratio</th>
+      <th>Yield strength</th>
+      <th>Ultimate tensile strength</th>
+      <th>Ultimate total elongation</th>
+      <th>Hardness value</th>
+      <th>Melting point</th>
+      <th>Thermal expansion</th>
+      <th>Thermal conductivity</th>
+      <th>Specific heat</th>
+      <th>Electrical resistivity</th>
+      <th>Chemical composition</th>
+      <th>Confidence Level</th>
+      <th>Show Material</th>
+      <% if is_admin? %>
+      <th></th>
+      <th></th>
+      <% end %>
+    </tr>
+  </thead>
+
+   
+    <% @materials.each do |material| %>
+      <tr>
+        <td><%= material.mat_name %></td>
+        <td><%= material.mat_type %></td>
+        <td><%= material.density %></td>
+	<td><%= material.elastic_modulus %></td>
+        <td><%= material.shear_modulus %></td>
+        <td><%= material.poissons_ratio %></td>
+        <td><%= material.yield_strength %></td>
+        <td><%= material.ultimate_tensile_strength %></td>
+        <td><%= material.ultimate_total_elongation %></td>
+        <td><%= material.hardness_value %></td>
+        <td><%= material.melting_point %></td>
+        <td><%= material.thermal_expansion %></td>
+        <td><%= material.thermal_conductivity %></td>
+        <td><%= material.specific_heat %></td>
+        <td><%= material.electrical_resistivity %></td>
+        <td><%= material.chemical_composition %></td>
+	<td><%= material.confidence_level %></td>
+	<td><%= link_to 'Show', material, class: "btn btn-large btn-primary"  %></td>
+	<% if is_admin? %>        
+        <td><%= link_to 'Edit', edit_material_path(material) %></td>
+        <td><%= link_to 'Destroy', material, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+	<% end %>
+	<% @files_groups = Testfile.where(:material_id => material.id) %>
+	<% @groups = @files_groups.select(:groupname).uniq %>
+	<% @groups.each do |grp| %>
+	<td>Group with Testfile</td>
+	<th><%= grp.groupname %></th>
+	<% end %>
+	
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+
+<br>
+<p align="right">
+  Export this table to:
+  <%= link_to "CSV File", materials_path(format: "csv"), class: "btn btn-large btn-primary"  %> |
+  <%= link_to "Excel File", materials_path(format: "xls"), class: "btn btn-large btn-primary"  %>
+</p>
+<br>
+<% if is_admin? or is_group_admin? %> 
+<p><h4><%= link_to 'Add New Material to group', new_mat_membership_path %></h4></p>
+<% end %>
+
+
+<h1>Listing testfiles</h1>
+<div class="span35">
+<table class="table table-striped table-hover ">
+  <thead>
+    <tr>
+      <th>Filename</th>
+      <th>Download File</th>
+      <th>File Type</th>
+      <th>Material Name</th>
+      <th>Group Name</th>
+      <th>Comments</th>
+      <th>Uploaded by</th>
+      <th>Person in Charge</th>
+      <th>Test Location</th>
+      <th>Test Date</th>
+      <th>Created at</th>
+      <th>Updated at</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @testfiles.each do |testfile| %>
+      <tr>
+	<td><%= link_to File.basename(testfile.filename.url), testfile.filename_url %></td> 
+	<td><%= link_to 'Download File', :action => 'download', :controller => 'testfiles', :id => testfile.id %></td>       
+	<td><%= testfile.file_type %></td>	
+	<td><%= testfile.mat_name %></td>	
+	<td><%= testfile.groupname %></td>
+	<td><%= testfile.comments %></td>
+        <td><%= testfile.uploaded_by %></td>
+	<td><%= testfile.person_in_charge %></td>
+	<td><%= testfile.test_location %></td>
+	<td><%= testfile.test_date %></td>
+	<td><%= testfile.created_at %></td>
+	<td><%= testfile.updated_at %></td>
+        <td><%= link_to 'Show', testfile %></td>
+	<% if is_admin? or (testfile.person_in_charge == current_user.name) or (testfile.uploaded_by == current_user.name) %>
+        <td><%= link_to 'Edit', edit_testfile_path(testfile) %></td>
+        <td><%= link_to 'Destroy', testfile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+	<% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% if is_admin? or is_group_admin? %>
+<%= link_to 'New Testfile', new_testfile_path %>
+<% end %>
+</div>
+<br>
+<h4><%= link_to 'New Testfile', new_testfile_path %></h4>

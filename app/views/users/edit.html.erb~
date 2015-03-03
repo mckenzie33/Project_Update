@@ -1,0 +1,63 @@
+
+<div style="width: 100%; align:center; margin: 0 auto">
+<div class="container">
+	<div class="col-lg-6"><h1>Update Profile</h1>
+  		<div class="well">
+
+	 
+    <%= form_for(@user, :class => "bs-example form-horizontal") do |f| %>
+	<% if @user.errors.any? %>    	
+	<%= render 'shared/error_messages', object: f.object %>
+	<% end %>	
+	<div class="form-group">
+	      	  <%= f.label :name, class: "col-lg-2 control-label" %>
+		  <div class="col-lg-10">
+		  	<%= f.text_field :name, class: "form-control", placeholder: "Name" %>
+		  </div>
+	</div>      
+	<div class="form-group">
+	      	  <%= f.label :email, class: "col-lg-2 control-label" %>
+		  <div class="col-lg-10">
+		    	<%= f.text_field :email, class: "form-control", placeholder: "Email" %>
+		  </div>
+	</div>
+	<div class="form-group">
+	      	  <%= f.label :avatar, class: "col-lg-2 control-label" %>
+		  <div class="col-lg-10">
+		    	<%= f.file_field :avatar, class: "form-control" %>
+			<p>(A default avatar will be picked, if you don't select one.)</p>
+		  </div>
+	</div>
+
+      
+	
+	<div class="form-group">
+	      	  <%= f.label :password, class: "col-lg-2 control-label" %>
+		  <div class="col-lg-10">
+		    	<%= f.password_field :password, class: "form-control", placeholder: "Password" %>
+		  </div>
+	</div>
+      <div class="form-group">
+	      	  <%= f.label :password_confirmation, class: "col-lg-2 control-label" %>
+		  <div class="col-lg-10">
+		    	<%= f.password_field :password_confirmation, class: "form-control", placeholder: "Password" %>
+		  </div>
+	</div>
+
+      
+	<div class="form-group">
+		<div class="col-lg-3  col-lg-offset-2">
+                    		
+			<%= f.submit "Update", class: "btn btn-large btn-primary" %>
+		</div>
+		
+		<%= button_tag "Cancel", :type => 'button', :class => "btn btn-large btn-primary", :onclick => "location.href = '#{current_user}'" %>
+		
+	</div>
+      <p>New user? <%= link_to "Sign up now!", signup_path %></p>
+	<% end %>
+	
+    </div>
+  </div>
+</div>
+</div>

@@ -1,0 +1,58 @@
+#drop tables
+	groups
+	mat_memberships
+	memberships
+
+#add tables
+PROPERTIES
+	t.float    "density"
+    t.float    "elastic_modulus"
+    t.float    "shear_modulus"
+    t.float    "yield_strength"
+    t.float    "ultimate_tensile_strength"
+    t.float    "ultimate_total_elongation"
+    t.float    "hardness_value"
+    t.float    "melting_point"
+    t.float    "thermal_conductivity"
+    t.float    "thermal_expansion"
+    t.float    "poissons_ratio"
+    t.float    "specific_heat"
+    t.float    "electrical_resistivity"
+    t.float    "chemical_composition"
+
+
+#remove columns from
+MATERIALS
+	t.float    "density"
+    t.float    "elastic_modulus"
+    t.float    "shear_modulus"
+    t.float    "poissons_ratio"
+    t.float    "yield_strength"
+    t.float    "ultimate_tensile_strength"
+    t.float    "ultimate_total_elongation"
+    t.float    "hardness_value"
+    t.float    "melting_point"
+    t.float    "thermal_expansion"
+    t.float    "thermal_conductivity"
+    t.float    "specific_heat"
+    t.float    "electrical_resistivity"
+    t.float    "chemical_composition"
+    t.string   "confidence_level"
+
+TESTFILES
+t.string   "uploaded_by"
+t.string   "mat_name"
+t.string   "groupname"
+t.string   "comments"
+t.string   "person_in_charge"
+t.string   "test_location"
+t.date     "test_date"
+t.string   "confidence_level"
+
+#add columns to 
+TESTFILES
+t.binary   "file_contents"
+t.integer  "confidence_rank"
+
+USERS
+t.integer  "security_level"

@@ -1,0 +1,16 @@
+class ChangeMaterialsTestfiles < ActiveRecord::Migration
+  def change
+	change_table :materials do |t|
+  		t.index :name
+		t.index :type
+	end
+	change_table :testfiles do |t|
+  		t.string :type
+		t.integer :material_id
+		t.index :material_id
+  		t.index :material
+		t.index :type
+		t.index :group
+	end
+  end
+end
