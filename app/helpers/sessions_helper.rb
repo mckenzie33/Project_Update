@@ -24,7 +24,7 @@ def current_user?(user)
 end
 
 def is_admin?
-    current_user.id == 16
+    current_user.id == 2
 end
 
 def signed_in_user

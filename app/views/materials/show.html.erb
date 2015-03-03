@@ -18,4 +18,42 @@
 <%= link_to 'Back', materials_path %>
 
 </div>
+
+<% if @testfiles.any? %>
 <h1>Listing testfiles</h1>
+
+<table class="table table-striped table-hover ">
+  <thead>
+    <tr>
+      <th>Filename</th>
+      <th>File Type</th>
+      <th>Material Name</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @testfiles.each do |testfile| %>
+      <tr>
+	<td><%= link_to File.basename(testfile.filename.url), testfile.filename_url %><br><%= link_to 'or Download File', :controller => 'testfiles', :action => 'download', :id => testfile.id %></td>        
+	<td><%= testfile.file_type %></td>	
+	<td><%= testfile.mat_name %></td>	
+    <td><%= link_to 'Show', testfile %></td>
+
+	<% if is_admin? %>
+        <td><%= link_to 'Edit', edit_testfile_path(testfile) %></td>
+        <td><%= link_to 'Destroy', testfile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+	<% end %>
+      </tr>
+    <% end %>
+  </tbody>
+
+</table>
+<% if is_admin? or is_group_admin? %>
+<%= link_to 'New Testfile', new_testfile_path %>
+<% end %>
+<br>
+
+<% end %>

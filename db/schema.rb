@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150303013724) do
+ActiveRecord::Schema.define(version: 20150303140602) do
 
   create_table "materials", force: true do |t|
     t.datetime "created_at"
@@ -23,21 +23,24 @@ ActiveRecord::Schema.define(version: 20150303013724) do
   add_index "materials", ["mat_name", "mat_type"], name: "index_materials_on_mat_name_and_mat_type", unique: true
 
   create_table "properties", force: true do |t|
-    t.float "density"
-    t.float "elastic_modulus"
-    t.float "shear_modulus"
-    t.float "poissons_ratio"
-    t.float "yield_strength"
-    t.float "ultimate_tensile_strength"
-    t.float "ultimate_total_elongation"
-    t.float "hardness_value"
-    t.float "melting_point"
-    t.float "thermal_expansion"
-    t.float "thermal_conductivity"
-    t.float "specific_heat"
-    t.float "electrical_resistivity"
-    t.float "chemical_composition"
+    t.float   "density"
+    t.float   "elastic_modulus"
+    t.float   "shear_modulus"
+    t.float   "poissons_ratio"
+    t.float   "yield_strength"
+    t.float   "ultimate_tensile_strength"
+    t.float   "ultimate_total_elongation"
+    t.float   "hardness_value"
+    t.float   "melting_point"
+    t.float   "thermal_expansion"
+    t.float   "thermal_conductivity"
+    t.float   "specific_heat"
+    t.float   "electrical_resistivity"
+    t.float   "chemical_composition"
+    t.integer "material_id"
   end
+
+  add_index "properties", ["material_id"], name: "index_properties_on_material_id"
 
   create_table "testfiles", force: true do |t|
     t.string   "filename"
@@ -46,7 +49,10 @@ ActiveRecord::Schema.define(version: 20150303013724) do
     t.string   "file_type"
     t.binary   "file_contents"
     t.integer  "confidence_rank"
+    t.integer  "material_id"
   end
+
+  add_index "testfiles", ["material_id"], name: "index_testfiles_on_material_id"
 
   create_table "users", force: true do |t|
     t.string   "name"
