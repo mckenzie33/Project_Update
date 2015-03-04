@@ -1,0 +1,54 @@
+class CreateStructure < ActiveRecord::Migration
+def change
+  create_table "materials" do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string "mat_name"
+    t.string "mat_type"
+  end
+  add_index "materials", ["mat_name", "mat_type"], name: "index_materials_on_mat_name_and_mat_type", unique: true
+
+  create_table "properties" do |t| 
+  	t.float "density"
+  	t.float "elastic_modulus"
+  	t.float "shear_modulus"
+  	t.float "poissons_ratio"
+  	t.float "yield_strength"
+  	t.float "ultimate_tensile_strength"
+  	t.float "ultimate_total_elongation"
+  	t.float "hardness_value"
+  	t.float "melting_point"
+  	t.float "thermal_expansion"
+  	t.float "thermal_conductivity" 
+  	t.float "specific_heat"
+  	t.float "electrical_resistivity"
+  	t.float "chemical_composition"
+  	t.integer "material_id"
+  end
+  add_index "properties", ["material_id"], name: "index_properties_on_material_id"
+  create_table "testfiles" do |t|
+  	t.string "filename"
+  	t.datetime "created_at"
+  	t.datetime "updated_at"
+  	t.string "file_type"
+  	t.binary "file_contents"
+  	t.integer "confidence_rank"
+  	t.integer "material_id"
+  end
+  add_index "testfiles", ["material_id"], name: "index_testfiles_on_material_id"
+  create_table "users"  do |t|
+    t.string "name"
+  	t.string "email"
+  	t.datetime "created_at"
+  	t.datetime "updated_at"
+  	t.string "password_digest"
+  	t.string "remember_token"
+  	t.string "avatar"
+  	t.integer "security_level"
+  	t.string "password_reset_token"
+  	t.datetime "password_reset_sent_at"
+  end
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["remember_token"], name: "index_users_on_remember_token"
+  end
+end

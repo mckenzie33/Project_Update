@@ -1,6 +1,6 @@
 class MaterialsController < ApplicationController
   before_action :set_material, only: [:show, :edit, :update, :destroy]
-  before_action :check_access, only: [:edit, :update, :create, :new, :destroy]
+#before_action :check_access, only: [:edit, :update, :create, :new, :destroy]
 
   # GET /materials
   # GET /materials.json
@@ -25,7 +25,7 @@ class MaterialsController < ApplicationController
   # GET /materials/1
   # GET /materials/1.json
   def show
-	@testfiles = Testfile.where(:mat_name => @material.mat_name)
+	@testfiles = Testfile.where(:material_id => @material.id)
   end
 
   # GET /materials/new
