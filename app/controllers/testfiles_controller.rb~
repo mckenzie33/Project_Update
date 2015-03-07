@@ -79,11 +79,11 @@ class TestfilesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def testfile_params
-      params.require(:testfile).permit(:filename, :uploaded_by, :material_id, :mat_name, :mat_type, :group_id, :groupname, :group_owner_id, :comments, :confidence_level, :person_in_charge, :test_location, :test_date)
+      params.require(:testfile).permit(:filename, :file_type, :file_contents, :confidence_rank, :material_id)
     end
 
     def check_access
-	if not (is_admin? or is_group_admin?)
+	if not (is_admin?)
 		if signed_in?
 			redirect_to(current_user, :notice => "You tried to access a wrong link, please try again!")
 		else

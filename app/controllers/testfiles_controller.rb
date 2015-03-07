@@ -23,7 +23,7 @@ class TestfilesController < ApplicationController
   end
 
   # GET /testfiles/new
-  def new
+  def new                                    
     @testfile = Testfile.new
   end
 
@@ -35,7 +35,8 @@ class TestfilesController < ApplicationController
   # POST /testfiles.json
   def create
     @testfile = Testfile.new(testfile_params)
-
+    #@material = Material.find_by mat_name: :mat_name
+    #@testfile = @material.testfiles.build
     respond_to do |format|
       if @testfile.save
         format.html { redirect_to @testfile, notice: 'Testfile was successfully created.' }
@@ -75,6 +76,7 @@ class TestfilesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_testfile
       @testfile = Testfile.find(params[:id])
+      
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

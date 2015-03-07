@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150303140602) do
+ActiveRecord::Schema.define(version: 20150305195340) do
 
   create_table "materials", force: true do |t|
     t.datetime "created_at"
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 20150303140602) do
     t.binary   "file_contents"
     t.integer  "confidence_rank"
     t.integer  "material_id"
+    t.string   "mat_name"
   end
 
   add_index "testfiles", ["material_id"], name: "index_testfiles_on_material_id"

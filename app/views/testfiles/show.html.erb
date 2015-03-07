@@ -14,15 +14,5 @@
   <%= @testfile.mat_name %>
 </p>
 
-<p>
-  <strong>Group:</strong>
-  <%= @testfile.groupname %>
-</p>
-
-<p>
-  <strong>Uploaded by:</strong>
-  <%= @testfile.uploaded_by %>
-</p>
-
 <%= link_to 'Edit', edit_testfile_path(@testfile) %> |
 <%= link_to 'Back', testfiles_path %>

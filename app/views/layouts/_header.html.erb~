@@ -4,38 +4,21 @@
       
 	  
 	 <div class="container">
-	<ul class="nav pull-left">      
-	     <!--<%= link_to image_tag("gethealthy.jpg", :size => "100x40", :alt => 'Get Healthy!'), root_path, id: "logo" %>-->
-	     <a class="navbar-brand" href='/'>Honda Material Database</a>
-	  </ul>
 	<% if signed_in? %>
 				<ul class="nav navbar-nav navbar-right">
-					<li><%= link_to "Home", current_user %></li>
-					<% if is_admin? %>
+					<li><%= link_to "Home", root_path %></li>
+	
 					<li id="fat-menu" class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-						Manage Database <b class="caret"></b>
+						Materials <b class="caret"></b>
 						</a>
 						<ul class="dropdown-menu">
 							<li><%= link_to "Add Material", new_material_path %></li>
-							<li><%= link_to "Update Material Properties", materials_path %></li>
-							<li><%= link_to "Delete Material", materials_path %></li>
+							<li><%= link_to "Search Material", materials_path %></li>
+							<li><%= link_to "Add Testfile", new_testfile_path %></li>
 						</ul>
 					</li>
-					<li id="fat-menu" class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-						Manage Groups <b class="caret"></b>
-						</a>
-						<ul class="dropdown-menu">
-							<li><%= link_to "Add Materials to Group", new_mat_membership_path %></li>
-							<li><%= link_to "Update Group Details", groups_path %></li>
-							<li><%= link_to "Delete Group", groups_path %></li>
-						</ul>
-					</li>
-					<% end %>
-
-					<li><%= link_to "Search/View Materials", materials_path %></li>
-									
+					
 					<li id="fat-menu" class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 						Account <b class="caret"></b>
@@ -48,15 +31,13 @@
 								<%= link_to "Sign out", signout_path, method: "delete" %>
 							</li>
 						</ul>
-					</li>
-            				
+					</li>		
 				</ul>
 		<% else %>
 				<ul class="nav navbar-nav navbar-right">
 					<li><%= link_to "Home", root_path %></li>
-                    			<li><%= link_to "Sign in", signin_path %></li>
-					
-                   
+          <li><%= link_to "Sign up", signup_path %></li>
+					<li><%= link_to "Sign in", signin_path %></li>
 				</ul>
 	 
 	<% end %>

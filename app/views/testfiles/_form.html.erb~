@@ -11,48 +11,23 @@
     </div>
   <% end %>
   <div class="field">
+    <%= f.label :mat_name %><br>
+    <%= f.select :mat_name, options_for_select(Material.all.map{|s|[s.mat_name]}) %>
+  </div> 
+  <div class="field">
     <%= f.label :filename %><br>
     <%= f.file_field :filename %>
   </div>
   <div class="field">
     <%= f.label :file_type %><br>
-    <%= f.select :file_type, options_for_select(['Unknown', 'Analysis-File', 'Data-File', 'Model-File']) %>
+    <%= f.select :file_type, options_for_select(['CSV', 'Excel', 'Textfile']) %>
   </div>
   <div class="field">
-    <%= f.label :confidence_level %><br>
-    For example: <br>
+    <%= f.label :confidence_rank %><br>
     (On a scale of 1-100, how would you rate your confidence on the data in the file.)
-    <%= f.text_field :confidence_level %>
+    <%= f.text_field :confidence_rank %>
   </div>
-  <div class="field">
-    <%= f.label :mat_name %><br>
-    <%= f.select :mat_name, options_for_select(Material.all.map{|s|[s.mat_name]}) %>
-  </div>
-  <div class="field">
-    <%= f.label :groupname %><br>
-    <%= f.select :groupname, options_for_select(Group.all.map{|s|[s.groupname]}) %>
-  </div>
-    
-  <div class="field">
-    <%= f.label :comments %><br>
-    <%= f.text_field :comments %>
-  </div>
-  <div class="field">
-    <%= f.label :person_in_charge %><br>
-    <%= f.text_field :person_in_charge %>
-  </div>
-  <div class="field">
-    <%= f.label :test_location %><br>
-    <%= f.text_field :test_location %>
-  </div>
-  <div class="field">
-    <%= f.label :test_date %><br>
-    <%= f.date_select :test_date %>
-  </div>
-  <div class="field">
-    <%= f.label :uploaded_by %><br>
-    <%= f.text_field :uploaded_by, value: current_user.name %>
-  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>

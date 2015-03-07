@@ -364,7 +364,6 @@ h6,
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 500;
   line-height: 1.1;
-  color: #317eac;
 }
 h1 small,
 h2 small,
@@ -1276,7 +1275,7 @@ pre code {
     width: 25%;
   }
   .col-lg-2 {
-    width: 16.66666667%;
+    width: 20%;
   }
   .col-lg-1 {
     width: 8.33333333%;
@@ -2080,8 +2079,8 @@ fieldset[disabled] .btn-default.active {
 }
 .btn-primary {
   color: #ffffff;
-  background-color: #2fa4e7;
-  border-color: #2fa4e7;
+  background-color: #E72F2F;
+  border-color: #FFFFFF;
 }
 .btn-primary:hover,
 .btn-primary:focus,
@@ -3955,7 +3954,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .navbar-default .navbar-nav > li > a:hover,
 .navbar-default .navbar-nav > li > a:focus {
   color: #ffffff;
-  background-color: #178acc;
+  background-color: #949494;
 }
 .navbar-default .navbar-nav > .active > a,
 .navbar-default .navbar-nav > .active > a:hover,
@@ -5754,7 +5753,7 @@ button.close {
   background-repeat: no-repeat;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff54b4eb', endColorstr='#ff1d9ce5', GradientType=0);
   filter: none;
-  border-bottom: 1px solid #178acc;
+  border-bottom: 1px solid #CC1717;
 }
 .btn-success {
   background-image: -webkit-linear-gradient(#88c149, #73a839 60%, #699934);

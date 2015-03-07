@@ -6,7 +6,7 @@ class Material < ActiveRecord::Base
 
 	validates_uniqueness_of :mat_name, scope: [:mat_type]
 
-	has_many :testfiles, dependent: :destroy
+	has_many :testfiles, :foreign_key => "mat_name", dependent: :destroy
   has_one :property, dependent: :destroy
 	
 	attr_accessible :mat_name, :mat_type

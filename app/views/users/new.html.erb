@@ -11,7 +11,7 @@
 	<div class="form-group">
 	      	  		<%= f.label :name, class: "col-lg-2 control-label" %>
 		  		<div class="col-lg-10">
-		    			<%= f.text_field :name, class: "form-control", placeholder: "Email" %>
+		    			<%= f.text_field :name, class: "form-control", placeholder: "Name" %>
 		  		</div>
 	</div>     
 	<div class="form-group">
@@ -21,17 +21,15 @@
 		  		</div>
 	</div>
 	<div class="form-group">
-	      	  		<%= f.label :avatar, class: "col-lg-2 control-label" %>
-		  		<div class="col-lg-10">
-		    			<%= f.file_field :avatar, class: "form-control" %>
-		    			<p>(A default avatar will be picked, if you don't select one.)</p>
-		  		</div>
+	      	<%= f.label :avatar, class: "col-lg-2 control-label" %>
+		  <div class="col-lg-10">
+		    	<%= f.file_field :avatar, class: "form-control" %>
+		  </div>
 	</div>
-
 	<div class="form-group">
 	      	  		<%= f.label :password, class: "col-lg-2 control-label" %>
 		  		<div class="col-lg-10">
-		    			<%= f.password_field :password, class: "form-control", placholder: "Password" %>
+		    			<%= f.password_field :password, class: "form-control", placeholder: "Password" %>
 		  		</div>
 	</div>
 	<div class="form-group">
@@ -48,7 +46,7 @@
 		<%= button_tag "Cancel", :type => 'button', :class => "btn btn-large btn-primary", :onclick => "location.href = '#{root_path}'" %>
 		
 	</div>
-      <p>New user? <%= link_to "Sign up now!", signup_path %></p>
+      <p>Already a member? <%= link_to "Login", signin_path %></p>
 	<% end %>
 	
     </div>

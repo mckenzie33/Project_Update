@@ -1,24 +1,22 @@
 <p id="notice"><%= notice %></p>
+<p>
+  <strong>Filename:</strong>
+  <%= @testfile.filename %>
+  <%= link_to File.basename(@testfile.filename.url), @testfile.filename_url %>
+</p>
 
+<p>
+  <strong>Type:</strong>
+  <%= @testfile.file_type %>
+</p>
 <p>
   <strong>Material:</strong>
   <%= @testfile.mat_name %>
 </p>
 
 <p>
-  <strong>Type:</strong>
-  <%= @testfile.mat_type %>
-</p>
-
-<p>
   <strong>Group:</strong>
   <%= @testfile.groupname %>
-</p>
-
-<p>
-  <strong>Filename:</strong>
-  <%= @testfile.filename %>
-  <%= link_to File.basename(@testfile.filename.url), @testfile.filename_url %>
 </p>
 
 <p>

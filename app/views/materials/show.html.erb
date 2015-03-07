@@ -1,6 +1,4 @@
 <div class="jumbotron">
-<p id="notice"><%= notice %></p>
-
 <p>
   <strong>Name:</strong>
   <%= @material.mat_name %>
@@ -13,12 +11,12 @@
 
 
 <% if is_admin? %>
-<%= link_to 'Edit', edit_material_path(@material) %>
+<%= link_to 'Edit', edit_material_path(@material), class: "btn btn-large btn-primary" %>
 <% end %>
-<%= link_to 'Back', materials_path %>
+<%= link_to 'Back', materials_path, class: "btn btn-large btn-primary" %>
 
 </div>
-
+<%= link_to 'Add Testfile', new_testfile_path, class: "btn btn-large btn-primary" %>
 <% if @testfiles.any? %>
 <h1>Listing testfiles</h1>
 
@@ -29,8 +27,10 @@
       <th>File Type</th>
       <th>Material Name</th>
       <th></th>
+      <% if is_admin? %>
       <th></th>
       <th></th>
+      <% end %>
     </tr>
   </thead>
 
@@ -51,9 +51,6 @@
   </tbody>
 
 </table>
-<% if is_admin? or is_group_admin? %>
-<%= link_to 'New Testfile', new_testfile_path %>
-<% end %>
 <br>
 
 <% end %>

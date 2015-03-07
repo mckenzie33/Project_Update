@@ -1,45 +1,28 @@
 <h1 align="center">Honda CAE Material Databse</h1>
 <br>
-<p align="center"><%= link_to "Sign up now!", signup_path, class: "btn btn-large btn-primary" %></p>
-
-
 <br>
-
-
-
 <div class="container">
   <div class="row">
-   <div class="col-lg-5"><div class="well well-lg">
-	<h2>Users: </h2>
-<ul>
-  <h5> Sign Up/Login.</h5> Create an account using an active email address.  Login using the email address and password you used during sign up. You can change any of these by clicking on "Edit Profile" under "Accounts" on the navigation bar. 
-  <h5> Search/View Material Database.</h5> You can view the Matarial Database which contains the list of materials at Honda and their properties. You can Search, Sort/Filter and then Export the list of materials in the table to an Excel/CSV file. In the table, you can also see what groups have testfiles associated with the material.
-<h5> Groups.</h5> You can see a list of Groups that you are a member of by going to your Homepage. Click on "Show Group" to look at the material and testfiles associated with the group, in addition you can Search, Sort/Filter Materials in the table and export them to Excel/CSV file.
-<h5> Testfiles. </h5> Users that do not belong to a group can only see if the material files exist or not. Users that do belong to groups can View and Download any testfiles that are displayed on the Groups Page.
-</p>
-<p></p>
-   </div></div>
-   <div class="col-lg-4"><div class="well well-lg">
-
-<h2>Group Admins: </h2>
-<ul>
-<h5> Login.</h5>  Login for group admins is similar to users'.
-<h5> Search/View Material Databse.</h5>  Same access and features as users. Except there's alink for group admins to add materials to groups.
-<h5> Groups.</h5>  In addition to what users can do, group admins/owners can add/delete users from groups and Edit group details. Basically they get the membership requests for the group and they get to decide what they want to do.
-<h5> Testfiles </h5> Group admin also get to edit, add, delete testfiles associated with their group.
-</ul>
-</div></div>
-   <div class="col-lg-3"><div class="well well-lg">
-<h2>Admin </h2>
-<ul>
-  <h5> Can do all the stuff a group_admin can do and then some.</h5>
-  <h5> Login.</h5>  An Admin would log in the same way a user would.
-  <h5> Search/View Database.</h5>  An admin can edit,add and delete matereials in the list.
- <h5> Groups.</h5>  Admins can edit, add, and delete groups. 
- <h5> Testfiles</h5> Admins can edit, add, and delete testfiles associated with all the groups. 
- 
-</ul>
-</div>
-</div>
+  	<div class="col-lg-5">
+  		<div class="well well-lg">
+				<h2> Users: </h2>
+				<ul>
+					<h5> Sign Up/Login.</h5> Create an account using an active email address.  Login using the email address and password you used during sign up. You can change any of these by clicking on "Edit Profile" under "Accounts" on the navigation bar. 
+					<h5> Search/View Material Database.</h5> You can view the Matarial Database which contains the list of materials at Honda and their properties. You can Search, Sort/Filter and then Export the list of materials in the table to an Excel/CSV file.
+					<h5> Testfiles. </h5> Users will be able to view/download testfile created by other users. Users that create testfiles will be able to submit a request to an Admin should the user no longer need the testfile.
+				</ul>
+			</div>
+  	</div>
+  <div class="col-lg-3">
+  	<div class="well well-lg">
+  		<h2>Admin </h2>
+  		<ul>
+  			<h5> Login. </h5>  An Admin would log in the same way a user would.
+  			<h5> Search/View Database. </h5>  An admin can edit, add and delete materials in the list. 
+  			<h5> Testfiles. </h5> Admins can edit, add, and delete testfiles associated.
+  			<h5> Request Notifications. </h5> An admin homepage differs from that of a normal user in that Admins will have a table containing user requests to delete testfiles.
+  		</ul>
+  	</div>
+  </div>
 </div>
 <hr>

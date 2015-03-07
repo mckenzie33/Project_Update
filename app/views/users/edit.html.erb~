@@ -1,10 +1,7 @@
-
 <div style="width: 100%; align:center; margin: 0 auto">
 <div class="container">
 	<div class="col-lg-6"><h1>Update Profile</h1>
   		<div class="well">
-
-	 
     <%= form_for(@user, :class => "bs-example form-horizontal") do |f| %>
 	<% if @user.errors.any? %>    	
 	<%= render 'shared/error_messages', object: f.object %>
@@ -51,7 +48,7 @@
 			<%= f.submit "Update", class: "btn btn-large btn-primary" %>
 		</div>
 		
-		<%= button_tag "Cancel", :type => 'button', :class => "btn btn-large btn-primary", :onclick => "location.href = '#{current_user}'" %>
+		<%= button_tag "Cancel", :type => 'button', :class => "btn btn-large btn-primary", :onclick => "location.href = '#{user_path}'" %>
 		
 	</div>
       <p>New user? <%= link_to "Sign up now!", signup_path %></p>
