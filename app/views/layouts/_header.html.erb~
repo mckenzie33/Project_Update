@@ -1,13 +1,11 @@
 <header class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="navbar-inner">
 	<div class="row">
-      
-	  
-	 <div class="container">
+	<div class="container">
+	<img src=<%=image_path("honda1.jpg")%> height="80" width="80" alt="Honda Logo"></img>
 	<% if signed_in? %>
 				<ul class="nav navbar-nav navbar-right">
 					<li><%= link_to "Home", root_path %></li>
-	
 					<li id="fat-menu" class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 						Materials <b class="caret"></b>
@@ -18,7 +16,6 @@
 							<li><%= link_to "Add Testfile", new_testfile_path %></li>
 						</ul>
 					</li>
-					
 					<li id="fat-menu" class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 						Account <b class="caret"></b>

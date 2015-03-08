@@ -25,7 +25,7 @@ class MaterialsController < ApplicationController
   # GET /materials/1
   # GET /materials/1.json
   def show
-	@testfiles = Testfile.where(:material_id => @material.id)
+	@testfiles = Testfile.where(:mat_name => @material.mat_name)
   end
 
   # GET /materials/new

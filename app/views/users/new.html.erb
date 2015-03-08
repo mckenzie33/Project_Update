@@ -41,10 +41,8 @@
 	<div class="form-group">
 		<div class="col-lg-3  col-lg-offset-2">      		
 			<%= f.submit "Sign Up", class: "btn btn-large btn-primary" %>
+			<%= button_tag "Cancel", :type => 'button', :class => "btn btn-large btn-primary", :onclick => "location.href = '#{root_path}'" %>
 		</div>
-		
-		<%= button_tag "Cancel", :type => 'button', :class => "btn btn-large btn-primary", :onclick => "location.href = '#{root_path}'" %>
-		
 	</div>
       <p>Already a member? <%= link_to "Login", signin_path %></p>
 	<% end %>

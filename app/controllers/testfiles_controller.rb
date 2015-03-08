@@ -35,8 +35,7 @@ class TestfilesController < ApplicationController
   # POST /testfiles.json
   def create
     @testfile = Testfile.new(testfile_params)
-    #@material = Material.find_by mat_name: :mat_name
-    #@testfile = @material.testfiles.build
+   
     respond_to do |format|
       if @testfile.save
         format.html { redirect_to @testfile, notice: 'Testfile was successfully created.' }
@@ -81,7 +80,7 @@ class TestfilesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def testfile_params
-      params.require(:testfile).permit(:filename, :file_type, :file_contents, :confidence_rank, :material_id)
+      params.require(:testfile).permit(:filename, :mat_name, :file_type, :file_contents, :confidence_rank, :material_id)
     end
 
     def check_access
