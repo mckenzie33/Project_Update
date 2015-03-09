@@ -20,6 +20,9 @@ class TestfilesController < ApplicationController
   # GET /testfiles/1
   # GET /testfiles/1.json
   def show
+    #figure out why these wont link material_id
+    #@testfile = Testfile.find(params[:id])
+    @material = Material.where(:mat_name => @testfile.mat_name)
   end
 
   # GET /testfiles/new
@@ -64,9 +67,10 @@ class TestfilesController < ApplicationController
   # DELETE /testfiles/1
   # DELETE /testfiles/1.json
   def destroy
+    @material = Material.where(:mat_name => @testfile.mat_name)
     @testfile.destroy
     respond_to do |format|
-      format.html { redirect_to testfiles_url }
+      format.html { redirect_to material_path }
       format.json { head :no_content }
     end
   end
@@ -80,7 +84,7 @@ class TestfilesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def testfile_params
-      params.require(:testfile).permit(:filename, :mat_name, :file_type, :file_contents, :confidence_rank, :material_id)
+      params.require(:testfile).permit(:material, :filename, :mat_name, :file_type, :file_contents, :confidence_rank, :material_id)
     end
 
     def check_access

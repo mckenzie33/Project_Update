@@ -1,4 +1,65 @@
 <p id="notice"><%= notice %></p>
+<p>
+  <strong>Material:</strong>
+  <%= @property.material.mat_name %>
+</p>
+<p>
+  <strong>Density:</strong>
+  <%= @property.density %>
+</p>
+<p>
+  <strong>Shear Modulus:</strong>
+  <%= @property.shear_modulus %>
+</p>
+<p>
+  <strong>Elastic Modulus:</strong>
+  <%= @property.elastic_modulus %>
+</p>
+<p>
+  <strong>Poisson Ratio:</strong>
+  <%= @property.poissons_ratio %>
+</p>
+<p>
+  <strong>Yield Strength:</strong>
+  <%= @property.yield_strength %>
+</p>
+<p>
+  <strong>Ultimate Tensile Strength:</strong>
+  <%= @property.ultimate_tensile_strength %>
+</p>
+<p>
+  <strong>Ultimate Total Elongation:</strong>
+  <%= @property.ultimate_total_elongation %>
+</p>
+<p>
+  <strong>Hardness Value:</strong>
+  <%= @property.hardness_value %>
+</p>
+<p>
+  <strong>Melting Point:</strong>
+  <%= @property.melting_point %>
+</p>
+<p>
+  <strong>Thermal Expansion:</strong>
+  <%= @property.thermal_expansion %>
+</p>
+<p>
+  <strong>Thermal Conductivity:</strong>
+  <%= @property.thermal_conductivity %>
+</p>
+<p>
+  <strong>Specific Heat:</strong>
+  <%= @property.specific_heat %>
+</p>
+<p>
+  <strong>Electrical Resistivity:</strong>
+  <%= @property.electrical_resistivity %>
+</p>
+<p>
+  <strong>Chemical Composition:</strong>
+  <%= @property.chemical_composition %>
+</p>
 
-<%= link_to 'Edit', edit_property_path(@property) %> |
-<%= link_to 'Back', properties_path %>
+<%= link_to 'Edit Properties', edit_property_path(@property) %> |
+<%= link_to 'Back to Material', @property.material %>
+

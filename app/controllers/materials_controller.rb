@@ -26,6 +26,7 @@ class MaterialsController < ApplicationController
   # GET /materials/1.json
   def show
 	@testfiles = Testfile.where(:mat_name => @material.mat_name)
+
   end
 
   # GET /materials/new
@@ -41,6 +42,8 @@ class MaterialsController < ApplicationController
   # POST /materials.json
   def create
     @material = Material.new(material_params)
+    @property = @material.build_property(:material_id => @material.id)
+    @testfiles = @material.testfiles.build(:material_id => @material.id)
 
     respond_to do |format|
       if @material.save
@@ -71,7 +74,7 @@ class MaterialsController < ApplicationController
   # DELETE /materials/1.json
   def destroy
     @material.destroy
-    @testfiles = Testfile.find(:all, :conditions => [ "mat_name = ? AND mat_type = ?", @material.mat_name, @material.mat_type])
+    @testfiles = Testfile.find(:all, :conditions => [ "mat_name = ?", @material.mat_name])
     @testfiles.each do |testfile|
 	testfile.destroy
     end
@@ -91,7 +94,7 @@ class MaterialsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def material_params
-      params.require(:material).permit(:mat_name, :mat_type, :confidence_level, :density, :elastic_modulus, :shear_modulus, :poissons_ratio, :yield_strength, :ultimate_tensile_strength, :ultimate_total_elongation, :hardness_value, :melting_point, :thermal_expansion, :thermal_conductivity, :specific_heat, :electrical_resistivity, :chemical_composition)
+      params.require(:material).permit(:mat_name, :mat_type, :testfiles)
     end
 
     def check_access

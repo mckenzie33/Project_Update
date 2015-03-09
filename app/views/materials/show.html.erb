@@ -8,7 +8,9 @@
   <strong>Type:</strong>
   <%= @material.mat_type %>
 </p>
-
+  <div>
+    <%= link_to "Material Properties", @material.property%>
+  </div>
 
 <% if is_admin? %>
 <%= link_to 'Edit', edit_material_path(@material), class: "btn btn-large btn-primary" %>
