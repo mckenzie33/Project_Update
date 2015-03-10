@@ -10,10 +10,10 @@ class MaterialsController < ApplicationController
     session[:filterrific_materials] = @filterrific.to_hash
 
     respond_to do |format|
-	format.html
-	format.js
-	format.csv { render text: @materials.to_csv }
-	format.xls # { send_data @materials.to_csv(col_sep: "\t") }
+	  format.html
+	  format.js
+	  format.csv { render text: @materials.to_csv }
+	  format.xls # { send_data @materials.to_csv(col_sep: "\t") }
     end
   end
   
@@ -25,8 +25,7 @@ class MaterialsController < ApplicationController
   # GET /materials/1
   # GET /materials/1.json
   def show
-	@testfiles = Testfile.where(:mat_name => @material.mat_name)
-
+	  @testfiles = @material.testfiles
   end
 
   # GET /materials/new
@@ -42,8 +41,8 @@ class MaterialsController < ApplicationController
   # POST /materials.json
   def create
     @material = Material.new(material_params)
-    @property = @material.build_property(:material_id => @material.id)
-    @testfiles = @material.testfiles.build(:material_id => @material.id)
+    property = @material.build_property(:material_id => @material.id)
+    #testfiles = @material.testfiles.build(:material_id => @material.id)
 
     respond_to do |format|
       if @material.save
@@ -74,10 +73,7 @@ class MaterialsController < ApplicationController
   # DELETE /materials/1.json
   def destroy
     @material.destroy
-    @testfiles = Testfile.find(:all, :conditions => [ "mat_name = ?", @material.mat_name])
-    @testfiles.each do |testfile|
-	testfile.destroy
-    end
+
     #find(:all, :conditions => ["name LIKE ? AND active = ?", "%#{search}%", 1])
    respond_to do |format|
       format.html { redirect_to materials_url }

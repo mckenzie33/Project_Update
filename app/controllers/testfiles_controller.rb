@@ -20,9 +20,7 @@ class TestfilesController < ApplicationController
   # GET /testfiles/1
   # GET /testfiles/1.json
   def show
-    #figure out why these wont link material_id
-    #@testfile = Testfile.find(params[:id])
-    @material = Material.where(:mat_name => @testfile.mat_name)
+    @material = @testfile.material
   end
 
   # GET /testfiles/new
@@ -38,6 +36,9 @@ class TestfilesController < ApplicationController
   # POST /testfiles.json
   def create
     @testfile = Testfile.new(testfile_params)
+    @material = Material.find_by(mat_name: @testfile.mat_name)
+    @material.testfiles << @testfile
+
    
     respond_to do |format|
       if @testfile.save
@@ -67,10 +68,9 @@ class TestfilesController < ApplicationController
   # DELETE /testfiles/1
   # DELETE /testfiles/1.json
   def destroy
-    @material = Material.where(:mat_name => @testfile.mat_name)
     @testfile.destroy
     respond_to do |format|
-      format.html { redirect_to material_path }
+      format.html { redirect_to materials_path }
       format.json { head :no_content }
     end
   end
