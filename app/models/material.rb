@@ -6,10 +6,10 @@ class Material < ActiveRecord::Base
 
 	validates_uniqueness_of :mat_name, scope: [:mat_type]
 
-	has_many :testfiles, dependent: :destroy
+	has_many :testfiles, :foreign_key => :material_id, dependent: :destroy
   has_one :property, dependent: :destroy
 	
-	attr_accessible :mat_name, :mat_type
+	attr_accessible :mat_name, :mat_type, :testfiles
 	
 	filterrific(
   	:default_settings => { :sorted_by => 'id_asc' },
@@ -51,7 +51,7 @@ class Material < ActiveRecord::Base
       *terms.map { |e| [e] * num_or_conditions }.flatten
     )
   }
-  
+
 
   def self.options_for_order
 	[
