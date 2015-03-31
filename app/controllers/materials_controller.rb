@@ -42,6 +42,8 @@ class MaterialsController < ApplicationController
   def create
     @material = Material.new(material_params)
     property = @material.build_property(:material_id => @material.id)
+    @user = User.find_by_id(current_user[:id])
+    @user.materials << @material
     #testfiles = @material.testfiles.build(:material_id => @material.id)
 
     respond_to do |format|
@@ -85,12 +87,11 @@ class MaterialsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_material
       @material = Material.find(params[:id])
-      #@testfile = Testfile.find(params[:mat_name, :mat_type])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def material_params
-      params.require(:material).permit(:mat_name, :mat_type, :testfiles)
+      params.require(:material).permit(:mat_name, :mat_type, :testfiles, :description, :user_id)
     end
 
     def check_access

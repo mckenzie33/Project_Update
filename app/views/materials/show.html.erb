@@ -8,6 +8,10 @@
   <strong>Type:</strong>
   <%= @material.mat_type %>
 </p>
+<p>
+  <strong>Description:</strong>
+  <%= @material.description %>
+</p>
   <div>
     <%= link_to "Material Properties", @material.property%>
   </div>
@@ -28,6 +32,10 @@
       <th>Filename</th>
       <th>File Type</th>
       <th>Material Name</th>
+      <th>Material Type</th>
+      <th>Date Added</th>
+      <th>Added By</th>
+      <th>Comments</th>
       <th></th>
       <% if is_admin? %>
       <th></th>
@@ -39,14 +47,19 @@
   <tbody>
     <% @testfiles.each do |testfile| %>
       <tr>
-	<td><%= link_to File.basename(testfile.filename.url), testfile.filename_url %><br><%= link_to 'or Download File', :controller => 'testfiles', :action => 'download', :id => testfile.id %></td>        
+	<td><%= link_to File.basename(testfile.filename.url), testfile.filename_url %></td>        
 	<td><%= testfile.file_type %></td>	
 	<td><%= testfile.mat_name %></td>	
-    <td><%= link_to 'Show', testfile %></td>
-
+  <td><%= testfile.material.mat_type %></td>
+  <td>
+          <p><%= testfile.created_at.strftime("%H:%M:%S") %></p>
+          <p><%= testfile.created_at.strftime("%m/%d/%y") %></p>
+  </td>
+  <td><%= testfile.user.name %></td>
+  <td><%= testfile.comments %></td>
 	<% if is_admin? %>
         <td><%= link_to 'Edit', edit_testfile_path(testfile) %></td>
-        <td><%= link_to 'Destroy', testfile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Delete', testfile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 	<% end %>
       </tr>
     <% end %>

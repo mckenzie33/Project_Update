@@ -11,13 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150305195340) do
+ActiveRecord::Schema.define(version: 20150331014536) do
 
   create_table "materials", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "mat_name"
     t.string   "mat_type"
+    t.text     "description"
+    t.integer  "user_id"
   end
 
   add_index "materials", ["mat_name", "mat_type"], name: "index_materials_on_mat_name_and_mat_type", unique: true
@@ -51,6 +53,8 @@ ActiveRecord::Schema.define(version: 20150305195340) do
     t.integer  "confidence_rank"
     t.integer  "material_id"
     t.string   "mat_name"
+    t.text     "comments"
+    t.integer  "user_id"
   end
 
   add_index "testfiles", ["material_id"], name: "index_testfiles_on_material_id"

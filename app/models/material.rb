@@ -5,11 +5,11 @@ class Material < ActiveRecord::Base
     :message => "%{value} is not a valid type" }
 
 	validates_uniqueness_of :mat_name, scope: [:mat_type]
-
+  belongs_to :user
 	has_many :testfiles, :foreign_key => :material_id, dependent: :destroy
   has_one :property, dependent: :destroy
 	
-	attr_accessible :mat_name, :mat_type, :testfiles
+	attr_accessible :mat_name, :mat_type, :testfiles, :description, :user_id
 	
 	filterrific(
   	:default_settings => { :sorted_by => 'id_asc' },

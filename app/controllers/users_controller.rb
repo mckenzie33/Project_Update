@@ -3,6 +3,8 @@ class UsersController < ApplicationController
   before_action :correct_user, only: [:edit, :update, :show]
   def show
      @user = User.find(params[:id])
+     @materials = @user.materials
+     @testfiles = @user.testfiles
   end
 
   def new
@@ -36,6 +38,7 @@ class UsersController < ApplicationController
 
   def create
      @user = User.new(user_params)
+
        if @user.save
           sign_in @user
           flash[:success] = "Welcome #{@user.name}"
@@ -48,7 +51,7 @@ class UsersController < ApplicationController
 private 
 
     def user_params
-       params.require(:user).permit(:name, :email, :password, :password_confirmation, :avatar)
+       params.require(:user).permit(:name, :email, :password, :password_confirmation, :avatar, :testfiles, :materials)
     end
     
     def signed_in_user

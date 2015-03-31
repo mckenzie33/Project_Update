@@ -24,8 +24,12 @@
   </div>
   <div class="field">
     <%= f.label :confidence_rank %><br>
-    (On a scale of 1-100, how would you rate your confidence on the data in the file.)
-    <%= f.number_field :confidence_rank, in: 1..100 %>
+    (On a scale of 1-10, how would you rate your confidence on the data in the file.)
+    <%= f.number_field :confidence_rank, in: 1..10 %>
+  </div>
+  <div class="field">
+    <%= f.label :comments %><br>
+    <%= f.text_field :comments %>
   </div>
 
   <div class="actions">

@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
 
-
+  has_many :testfiles, :foreign_key => :user_id
+  has_many :materials, :foreign_key => :user_id
   attr_accessible :name, :email, :remember_token, :avatar, :password, :password_confirmation
   before_save { self.email = email.downcase }
   before_create :create_remember_token

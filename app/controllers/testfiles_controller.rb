@@ -38,6 +38,8 @@ class TestfilesController < ApplicationController
     @testfile = Testfile.new(testfile_params)
     @material = Material.find_by(mat_name: @testfile.mat_name)
     @material.testfiles << @testfile
+    @user = @user = User.find_by_id(current_user[:id])
+    @user.testfiles << @testfile
 
    
     respond_to do |format|
@@ -84,7 +86,7 @@ class TestfilesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def testfile_params
-      params.require(:testfile).permit(:material, :filename, :mat_name, :file_type, :file_contents, :confidence_rank, :material_id)
+      params.require(:testfile).permit(:user, :material, :filename, :mat_name, :file_type, :file_contents, :comments, :confidence_rank, :material_id)
     end
 
     def check_access

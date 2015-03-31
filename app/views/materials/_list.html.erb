@@ -10,6 +10,10 @@
 		    <tr>
 		      <th>Name</th>
 		      <th>Type</th>
+		      <th>Description</th>
+		      <th>Yield Strength</th>
+		      <th>Ultimate Tensile Strength</th>
+		      <th>Added By</th>
 		      <th>Date Added</th>
 		      <th></th>
 		    </tr>
@@ -20,6 +24,10 @@
 		    <tr>
 			<td><%= material.mat_name %></td>
 			<td><%= material.mat_type %></td>
+			<td><%= material.description %></td>
+			<td><%= material.property.yield_strength %></td>
+			<td><%= material.property.ultimate_tensile_strength %></td>
+			<td><%= material.user.name %></td>
 			<td>
 					<p><%= material.created_at.strftime("%H:%M:%S") %></p>
 					<p><%= material.created_at.strftime("%m/%d/%y") %></p>
