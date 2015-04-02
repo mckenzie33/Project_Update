@@ -1,5 +1,7 @@
 CapstoneHonda::Application.routes.draw do
   
+  resources :dpms
+
   resources :properties
   resources :password_resets
   resources :testfiles
