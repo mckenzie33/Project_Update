@@ -1275,7 +1275,7 @@ pre code {
     width: 25%;
   }
   .col-lg-2 {
-    width: 16.66666667%;
+    width: 20%;
   }
   .col-lg-1 {
     width: 8.33333333%;
@@ -4450,9 +4450,9 @@ a.thumbnail.active {
   color: inherit;
 }
 .alert-success {
-  background-color: #dff0d8;
-  border-color: #d6e9c6;
-  color: #468847;
+  background-color: #000000;
+  border-color: #000000;
+  color: #FFFFFF;
 }
 .alert-success hr {
   border-top-color: #c9e2b3;

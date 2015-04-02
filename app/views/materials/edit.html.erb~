@@ -1,0 +1,5 @@
+<h1>Editing material</h1>
+
+<%= render 'form' %>
+
+<%= button_to 'Show', @material %> <%= button_to 'Back', material_path %>

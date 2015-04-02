@@ -1,0 +1,6 @@
+	<h5>Step <%=@step_start%> of <%=@step_end%></h5>
+	<p>Please select a file to be uploaded: </p>
+	<%= file_field "filename", "text"%>
+	<div class="actions">
+		<%=button_tag "Proceed"%>
+	</div>

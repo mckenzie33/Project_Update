@@ -10,12 +10,12 @@
 		    <tr>
 		      <th>Name</th>
 		      <th>Type</th>
-		      <th>Created at</th>
-		      <th>Show Material</th>
-		      <% if is_admin? %>
+		      <th>Description</th>
+		      <th>Yield Strength</th>
+		      <th>Ultimate Tensile Strength</th>
+		      <th>Added By</th>
+		      <th>Date Added</th>
 		      <th></th>
-		      <th></th>
-		      <% end %>
 		    </tr>
 		</thead>
 
@@ -24,12 +24,19 @@
 		    <tr>
 			<td><%= material.mat_name %></td>
 			<td><%= material.mat_type %></td>
-			<td><%= material.created_at %></td>
-			<td><%= material.updated_at %></td>
-			<td><%= link_to 'Show', material, class: "btn btn-large btn-primary"  %></td>
-			<% if is_admin? %>        
-			<td><%= link_to 'Edit', edit_material_path(material) %></td>
-			<td><%= link_to 'Destroy', material, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+			<td><%= material.description %></td>
+			<td><%= material.property.yield_strength %></td>
+			<td><%= material.property.ultimate_tensile_strength %></td>
+			<td><%= material.user.name %></td>
+			<td>
+					<p><%= material.created_at.strftime("%H:%M:%S") %></p>
+					<p><%= material.created_at.strftime("%m/%d/%y") %></p>
+			</td>
+			<td><%= link_to 'Testfiles', material, class: "btn btn-large btn-primary"  %>
+				<% if is_admin? %>        
+				<%= link_to 'Edit', edit_material_path(material), class: "btn btn-large btn-primary" %>
+				<%= link_to 'Destroy', material, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-large btn-primary" %>
+			</td>
 			<% end %>
 			<% @files_groups = Testfile.where(:mat_name => material.mat_name) %>
 			
@@ -43,15 +50,16 @@
 	<%= will_paginate materials %>
 	</div>
 	<br>
-	<h4 align="right">
-	  Export this table to:
+	<h4>
+	<il>
+	<%= link_to 'Add New Material', new_material_path, class: "btn btn-large btn-primary" %>
+	</il>
+	<il style="float: right;">
+	Export this table to:
 	  <%= link_to "CSV File", materials_path(format: "csv"), class: "btn btn-large btn-primary"  %> |
 	  <%= link_to "Excel File", materials_path(format: "xls"), class: "btn btn-large btn-primary"  %>
+	</il>
 	</h4>
-	<p align="left"><h4><%= link_to 'Add New Material', new_material_path %></h4>
-	<br>
-	</p>
-	<br>
 </div>
 
 

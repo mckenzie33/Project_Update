@@ -10,10 +10,10 @@ class MaterialsController < ApplicationController
     session[:filterrific_materials] = @filterrific.to_hash
 
     respond_to do |format|
-	format.html
-	format.js
-	format.csv { render text: @materials.to_csv }
-	format.xls # { send_data @materials.to_csv(col_sep: "\t") }
+	  format.html
+	  format.js
+	  format.csv { render text: @materials.to_csv }
+	  format.xls # { send_data @materials.to_csv(col_sep: "\t") }
     end
   end
   
@@ -25,7 +25,7 @@ class MaterialsController < ApplicationController
   # GET /materials/1
   # GET /materials/1.json
   def show
-	@testfiles = Testfile.where(:material_id => @material.id)
+	  @testfiles = @material.testfiles
   end
 
   # GET /materials/new
@@ -41,6 +41,10 @@ class MaterialsController < ApplicationController
   # POST /materials.json
   def create
     @material = Material.new(material_params)
+    property = @material.build_property(:material_id => @material.id)
+    @user = User.find_by_id(current_user[:id])
+    @user.materials << @material
+    #testfiles = @material.testfiles.build(:material_id => @material.id)
 
     respond_to do |format|
       if @material.save
@@ -71,10 +75,7 @@ class MaterialsController < ApplicationController
   # DELETE /materials/1.json
   def destroy
     @material.destroy
-    @testfiles = Testfile.find(:all, :conditions => [ "mat_name = ? AND mat_type = ?", @material.mat_name, @material.mat_type])
-    @testfiles.each do |testfile|
-	testfile.destroy
-    end
+
     #find(:all, :conditions => ["name LIKE ? AND active = ?", "%#{search}%", 1])
    respond_to do |format|
       format.html { redirect_to materials_url }
@@ -86,12 +87,11 @@ class MaterialsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_material
       @material = Material.find(params[:id])
-      #@testfile = Testfile.find(params[:mat_name, :mat_type])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def material_params
-      params.require(:material).permit(:mat_name, :mat_type, :confidence_level, :density, :elastic_modulus, :shear_modulus, :poissons_ratio, :yield_strength, :ultimate_tensile_strength, :ultimate_total_elongation, :hardness_value, :melting_point, :thermal_expansion, :thermal_conductivity, :specific_heat, :electrical_resistivity, :chemical_composition)
+      params.require(:material).permit(:mat_name, :mat_type, :testfiles, :description, :user_id)
     end
 
     def check_access
