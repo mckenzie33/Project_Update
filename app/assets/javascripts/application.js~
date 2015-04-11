@@ -16,3 +16,4 @@
 //= require turbolinks
 //= require_tree .
 //= require filterrific-jquery
+//= require bootstrap-datepicker

@@ -1,0 +1,8 @@
+<h1>DPM Process</h1>
+<% form_for @dpm do |f| %>
+	
+	<%= render "#{@dpm.current_step}_step", :f => f %>
+	<p><%= f.submit "Continue" %></p>
+	<p><%= f.submit "Back", :name => "back_button" unless @order.first_step? %></p>
+<% end %>
+<%= link_to 'Back', dpms_path %>

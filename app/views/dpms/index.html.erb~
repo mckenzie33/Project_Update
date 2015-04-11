@@ -1,0 +1,30 @@
+<h1>Listing dpms</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Show|</th>
+      <th>Edit|</th>
+      <th>Delete</th>
+    </tr>
+    <tr>
+    	<td></td>
+    	<td></td>
+    	<td></td>
+		</tr>
+  </thead>
+
+  <tbody>
+    <% @dpms.each do |dpm| %>
+      <tr>
+        <td><%= link_to 'Show', dpm %></td>
+        <td><%= link_to 'Edit', edit_dpm_path(dpm) %></td>
+        <td><%= link_to 'Delete', dpm, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Dpm', new_dpm_path %>

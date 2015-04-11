@@ -1,0 +1,8 @@
+<strong>Filename:</strong>
+<p>
+<%= @dpm.dpm_file %>
+<%= link_to File.basename(@dpm.dpm_file.url.to_s), @dpm.dpm_file_url %>
+</p>
+
+<%= link_to 'Edit', edit_dpm_path(@dpm) %> |
+<%= link_to 'Back', dpms_path %>

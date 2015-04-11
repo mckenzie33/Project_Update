@@ -2,8 +2,6 @@ class StaticPagesController < ApplicationController
   def home
    if signed_in?
     @user = User.new
-    @activity = current_user.activities.build
-    @log_items = current_user.log.paginate(page: params[:page])
    end 
   end
 

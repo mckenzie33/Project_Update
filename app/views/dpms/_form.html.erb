@@ -10,8 +10,13 @@
       </ul>
     </div>
   <% end %>
-
+  <div class="field">
+  	<%= f.label :filename %><br>
+    <%= f.file_field :filename %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
+
+

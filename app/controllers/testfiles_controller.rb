@@ -38,7 +38,7 @@ class TestfilesController < ApplicationController
     @testfile = Testfile.new(testfile_params)
     @material = Material.find_by(mat_name: @testfile.mat_name)
     @material.testfiles << @testfile
-    @user = @user = User.find_by_id(current_user[:id])
+    @user = User.find_by_id(current_user[:id])
     @user.testfiles << @testfile
 
    

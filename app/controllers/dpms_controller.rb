@@ -1,10 +1,11 @@
 class DpmsController < ApplicationController
   before_action :set_dpm, only: [:show, :edit, :update, :destroy]
+  helper DpmsHelper
 
   # GET /dpms
   # GET /dpms.json
   def index
-    @dpms = Dpm.all
+    @dpm = Dpm.all
   end
 
   # GET /dpms/1
@@ -14,7 +15,7 @@ class DpmsController < ApplicationController
 
   # GET /dpms/new
   def new
-    @dpm = Dpm.new
+  	@dpm = Dpm.new
   end
 
   # GET /dpms/1/edit
@@ -24,8 +25,10 @@ class DpmsController < ApplicationController
   # POST /dpms
   # POST /dpms.json
   def create
-    @dpm = Dpm.new(dpm_params)
-
+  	@dpm = Dpm.new(dpm_params)
+  	#todo @user = User.find_by(current_user[:id])
+  	#@user.dpms << @dpm
+  	
     respond_to do |format|
       if @dpm.save
         format.html { redirect_to @dpm, notice: 'Dpm was successfully created.' }
@@ -66,9 +69,8 @@ class DpmsController < ApplicationController
     def set_dpm
       @dpm = Dpm.find(params[:id])
     end
-
     # Never trust parameters from the scary internet, only allow the white list through.
     def dpm_params
-      params[:dpm]
+      params.require(:dpm).permit(:filename) #fetch(:dpm, {}).permit(:filename)
     end
-end
+  end

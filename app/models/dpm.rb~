@@ -1,0 +1,4 @@
+class Dpm < ActiveRecord::Base
+	mount_uploader :dpm_file, DpmFileUploader
+	attr_accessible :file
+end

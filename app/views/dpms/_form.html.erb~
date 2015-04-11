@@ -1,0 +1,22 @@
+<%= form_for(@dpm) do |f| %>
+  <% if @dpm.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@dpm.errors.count, "error") %> prohibited this dpm from being saved:</h2>
+
+      <ul>
+      <% @dpm.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+  	<%= f.label :dpm_file %><br>
+    <%= f.file_field :dpm_file %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+

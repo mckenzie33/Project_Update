@@ -11,7 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150331014536) do
+ActiveRecord::Schema.define(version: 20150402181905) do
+
+  create_table "dpms", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "filename"
+  end
 
   create_table "materials", force: true do |t|
     t.datetime "created_at"

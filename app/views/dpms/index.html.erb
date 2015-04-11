@@ -3,18 +3,23 @@
 <table>
   <thead>
     <tr>
-      <th></th>
-      <th></th>
-      <th></th>
+      <th>Show|</th>
+      <th>Edit|</th>
+      <th>Delete</th>
     </tr>
+    <tr>
+    	<td></td>
+    	<td></td>
+    	<td></td>
+		</tr>
   </thead>
 
   <tbody>
-    <% @dpms.each do |dpm| %>
+    <% @dpm.each do |dpm| %>
       <tr>
         <td><%= link_to 'Show', dpm %></td>
         <td><%= link_to 'Edit', edit_dpm_path(dpm) %></td>
-        <td><%= link_to 'Destroy', dpm, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Delete', dpm, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
