@@ -1,7 +1,11 @@
 <strong>Filename:</strong>
 <p>
-<%= @dpm.dpm_file %>
-<%= link_to File.basename(@dpm.dpm_file.url.to_s), @dpm.dpm_file_url %>
+<%= @dpm.filename %>
+<%= link_to File.basename(@dpm.filename.url), @dpm.filename_url %>
+</p>
+<p>
+<% graph = create_hash(Rails.root.to_s.concat("/public").concat(@dpm.filename.url))%>
+<%= line_chart(graph[0], {discrete: true, library: {pointSize: 0}}) %>
 </p>
 
 <%= link_to 'Edit', edit_dpm_path(@dpm) %> |

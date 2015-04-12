@@ -2,10 +2,8 @@
 <p>
 <%= @dpm.filename %>
 <%= link_to File.basename(@dpm.filename.url), @dpm.filename_url %>
-</p>
-<p>
 <% graph = create_hash(Rails.root.to_s.concat("/public").concat(@dpm.filename.url))%>
-<%= line_chart(graph[0], {discrete: true, library: {pointSize: 0}}) %>
+<%= line_chart graph.map.with_index {|ea, i| {:name => i+1, :data => ea}}, {discrete: true, library: {pointSize: 0, title: "Plotted Graphs"}} %>
 </p>
 
 <%= link_to 'Edit', edit_dpm_path(@dpm) %> |
