@@ -1,4 +1,6 @@
 module DpmsHelper
+	#used to create a set of graphs for the dpm to show
+	#the user picks one graph for the dpm process
 	def create_hash(filename)
 		graphs = [] #array of all graphs
 		graph = [] #array of points
@@ -25,7 +27,10 @@ module DpmsHelper
 			graph[i] = hash
 			hash = {}
 		end
-	file.close
-	graph
+		file.close
+		graph
 	end
+
+	#method used to 
+
 end

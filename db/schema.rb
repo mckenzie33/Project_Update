@@ -11,12 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150402181905) do
+ActiveRecord::Schema.define(version: 20150420132539) do
 
   create_table "dpms", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "filename"
+    t.integer  "step_number",    default: 0
+    t.integer  "graph_number"
+    t.float    "youngs_modulus"
+    t.float    "gauge_length"
+    t.float    "necking_point"
+    t.float    "fitting_param"
+    t.integer  "threshold"
   end
 
   create_table "materials", force: true do |t|

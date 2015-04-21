@@ -1,7 +1,6 @@
 CapstoneHonda::Application.routes.draw do
   
   resources :dpms
-
   resources :properties
   resources :password_resets
   resources :testfiles
@@ -17,7 +16,18 @@ CapstoneHonda::Application.routes.draw do
   match '/users',  to: 'users#index',  via: 'get'
   match '/users/join_group', :controller => 'users', :action => 'join_group', via: 'get'
   match '/users/accept_membership', :controller => 'users', :action => 'accept_membership', via: 'get'
-  
+
+  match '/step1', to: 'dpms#step1', via: 'patch'
+  match '/step1', to: 'dpms#step1', via: 'put'
+
+  match '/step2', to: 'dpms#step2', via: 'patch'
+  match '/step2', to: 'dpms#step2', via: 'put'
+
+  match '/step3', to: 'dpms#step3', via: 'patch'
+  match '/step3', to: 'dpms#step3', via: 'put'
+
+  match '/step4', to: 'dpms#step4', via: 'patch'
+  match '/step4', to: 'dpms#step4', via: 'put'
 
   resources :materials do
     get :reset_filterrific, :on => :collection

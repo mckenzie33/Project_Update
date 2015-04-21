@@ -1,0 +1,48 @@
+<!--process: 
+-create hash and get the graph number (-1) to show one graph
+-calculate Tstress, Tstrain, Pstrain 
+-get hardstress/hardstrain points
+-get all values needed to solve system of equations (calculated) 
+-solve for the 3 sets of systems 
+-plot these 3 graphs once they are calculated
+-->
+<% graph = create_hash(Rails.root.to_s.concat("/public").concat(@dpm.filename.url)) %>
+<% trial = graph[@dpm.graph_number - 1] %>
+
+
+
+
+<strong>STEP 4:Filename:</strong>
+<p>
+<%= line_chart graph.map.with_index {|ea, i| {:name => i+1, :data => ea}}, {discrete: true, library: {pointSize: 0, title: "Hardening Curve"}} %>
+</p>
+
+<%= form_for(@dpm, :url => step4_path(:id => @dpm.id), :method => 'put') do |f| %>
+  <% if @dpm.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@dpm.errors.count, "error") %> prohibited this dpm from being saved:</h2>
+
+      <ul>
+      <% @dpm.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <div class="field">
+  	<%= f.label :fitting_param %><br>
+    <%= f.number_field :fitting_param %>
+  </div>
+  <div class="field">
+    <%= f.label :threshold %><br>
+    <%= f.number_field :threshold %>
+  </div>
+   <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+<%= link_to 'Edit', edit_dpm_path(@dpm) %> |
+<%= link_to 'Back', dpms_path %>

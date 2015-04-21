@@ -1,0 +1,39 @@
+<p>
+<% graph = create_hash(Rails.root.to_s.concat("/public").concat(@dpm.filename.url)) %>
+<%= line_chart graph.map.with_index {|ea, i| {:name => i+1, :data => ea}}, {discrete: true, library: {pointSize: 0, title: "Plotted Graphs"}} %>
+</p>
+
+
+<%= form_for(@dpm, :url => step1_path(:id => @dpm.id), :method => 'put') do |f| %>
+  <% if @dpm.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@dpm.errors.count, "error") %> prohibited this dpm from being saved:</h2>
+
+      <ul>
+      <% @dpm.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <div class="field">
+  	<%= f.label :graph_number %><br>
+    <%= f.number_field :graph_number %>
+  </div>
+  <div class="field">
+    <%= f.label :youngs_modulus %><br>
+    <%= f.number_field :youngs_modulus %>
+  </div>
+  <div class="field">
+    <%= f.label :gauge_length %><br>
+    <%= f.number_field :gauge_length %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+<%= link_to 'Edit', edit_dpm_path(@dpm) %> |
+<%= link_to 'Back', dpms_path %>
