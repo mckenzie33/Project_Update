@@ -4,10 +4,10 @@
 -get hardstress/hardstrain points
 -get all values needed to solve system of equations (calculated) 
 -solve for the 3 sets of systems 
--plot these 3 graphs once they are calculated
+-plot these 3 final graphs once they are calculated
 -->
 <% graph = create_hash(Rails.root.to_s.concat("/public").concat(@dpm.filename.url)) %>
-<% trial = graph[@dpm.graph_number - 1] %>
+<% trial = graph[@dpm.graph_number - 1] %> 
 
 
 

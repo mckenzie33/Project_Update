@@ -5,14 +5,15 @@
 -have the user select a necking point
 -->
 <% graph = create_hash(Rails.root.to_s.concat("/public").concat(@dpm.filename.url)) %>
-<% trial = graph[@dpm.graph_number - 1] %>
-
-
-
-
+<% trial = Marshal.load(Marshal.dump(graph[@dpm.graph_number - 1])) %>
+<% graph = []%>
+<% new_trial = tp_strain(trial, @dpm.youngs_modulus) %>
+<% derivative = deriv(new_trial) %>
+<% intersections = intersection(new_trial, derivative, 0.1)%>
+<%= intersections %>
 <strong>STEP 2:Filename:</strong>
 <p>
-<%= line_chart graph.map.with_index {|ea, i| {:name => i+1, :data => ea}}, {discrete: true, library: {pointSize: 0, title: "Hardening Curve"}} %>
+<%= line_chart new_trial, {discrete: true, library: {pointSize: 0, title: "Pstrain vs Tstress"}} %>
 </p>
 
 <%= form_for(@dpm, :url => step2_path(:id => @dpm.id), :method => 'put') do |f| %>
@@ -28,7 +29,7 @@
     </div>
   <% end %>
 
-
+  <p><%= intersections %></p>
   <div class="field">
   	<%= f.label :necking_point %><br>
     <%= f.number_field :necking_point %>

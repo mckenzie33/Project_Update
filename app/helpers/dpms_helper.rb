@@ -13,7 +13,7 @@ module DpmsHelper
 			line = line.split(",").collect {|x| x.strip}
 			noYcolumns = line.length-1
 			for t in 0...noYcolumns #iterate over Y columns in row
-				point[t] = [line[0], line[t+1]] #get x,y1/2/3/...; save in point
+				point[t] = [line[0].to_f, line[t+1].to_f] #get x,y1/2/3/...; save in point
 				graph.push(point[t]) #store each point in a graph
 			end
 			graphs.push(graph) #store graph created in graphs array
@@ -31,6 +31,45 @@ module DpmsHelper
 		graph
 	end
 
-	#method used to 
+	def tp_strain trial, youngs
+		dummy = Hash.new
+		trial.each do |key, value| 
+			#change stress values first (y values)
+			new_value = value * (1 + key)
+			#change the strain values to tstrain values
+			new_key = Math.log(1 + key)
+			#change the tstrain to pstrain
+			new_key = new_key - (new_value / (youngs * 1000))
+			dummy.store(new_key, new_value)
+		end
+		dummy
+	end	
 
+	def deriv trial
+		dummy = Hash.new
+		trial.sort
+		keys = trial.keys
+		values = trial.values
+		#getting derivative minus first and last points
+		for i in 1...keys.length - 2
+			derivy_val = (values[i + 1] - values[i]) / (keys[i + 1] - keys[i])
+			dummy.store(keys[i], derivy_val )
+		end
+		dummy
+	end
+
+	def intersection trial, derivative, thresh
+		dummy = Hash.new
+		trial.each do |key, value|
+			deriv_val = 0.0
+			if derivative.key?(key)
+				deriv_val = derivative[key]
+			end
+			#compare the value in trial with deriv
+			if (((value - deriv_val).abs / value) < thresh)
+				dummy.store(key, value)
+			end
+		end
+		dummy
+	end
 end
