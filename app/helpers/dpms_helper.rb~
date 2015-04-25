@@ -1,32 +1,84 @@
 module DpmsHelper
-def create_hash
-	graphs = [] #array of all graphs
-	graph = [] #array of points
-	point = [] #points
-	hash = {}
-	noYcolumns = 0
-	fname = gets.chomp
-	file = @file #File.open(fname, 'r')
-	while !file.eof?
-		line = file.readline
-		line = line.split(",").collect {|x| x.strip}
-		noYcolumns = line.length-1
-		for t in 0...noYcolumns #iterate over Y columns in row
-			point[t] = [line[0], line[t+1]] #get x,y1/2/3/...; save in point
-			graph.push(point[t]) #store each point in a graph
-		end
-		graphs.push(graph) #store graph created in graphs array
-		graph = [] #clear the graph array
-	end
-	#graphs.length = num rows, graphs[i].length = num cols
-	for i in 0...noYcolumns #for each column i
-		for j in 0...graphs.length #for each row j
-			hash.store(graphs[j][0][0], graphs[j][i][1]) #let x point to y1/2/3/...
-		end
-		graph[i] = hash
+	#used to create a set of graphs for the dpm to show
+	#the user picks one graph for the dpm process
+	def create_hash(filename)
+		graphs = [] #array of all graphs
+		graph = [] #array of points
+		point = [] #points
 		hash = {}
+		noYcolumns = 0
+		file = File.open(filename, 'r')
+		while !file.eof?
+			line = file.readline
+			line = line.split(",").collect {|x| x.strip}
+			noYcolumns = line.length-1
+			for t in 0...noYcolumns #iterate over Y columns in row
+				point[t] = [line[0].to_f, line[t+1].to_f] #get x,y1/2/3/...; save in point	
+				graph.push(point[t]) #store each point in a graph
+			end
+			graphs.push(graph) #store graph created in graphs array
+			graph = [] #clear the graph array
+		end
+		#graphs.length = num rows, graphs[i].length = num cols
+		for i in 0...noYcolumns #for each column i
+			for j in 0...graphs.length #for each row j
+				hash.store(graphs[j][0][0], graphs[j][i][1]) #let x point to y1/2/3/...
+			end
+			graph[i] = hash
+			hash = {}
+		end
+		file.close
+		graph
 	end
-	@hash = graph
-	file.close
+
+	def getMaxMin(graph)
+		dummy=[]
+		dummy[0]=graph.values.max
+		dummy[1]=graph.values.min
+		dummy
+	end
+
+	def tp_strain trial, youngs
+		dummy = Hash.new
+		trial.each do |key, value| 
+			#change stress values first (y values)
+			new_value = value * (1 + key)
+			#change the strain values to tstrain values
+			new_key = Math.log(1 + key)
+			#change the tstrain to pstrain
+			new_key = new_key - (new_value / (youngs * 1000))
+			dummy.store(new_key, new_value)
+		end
+		dummy
+	end	
+
+	def deriv trial
+		dummy = Hash.new
+		trial.sort
+		puts "trial key: ", trial.keys
+		keys = trial.keys
+		puts "keys: ", keys
+		values = trial.values
+		#getting derivative minus first and last points
+		for i in 1...keys.length - 2
+			derivy_val = (values[i + 1] - values[i]) / (keys[i + 1] - keys[i])
+			dummy.store(keys[i], derivy_val )
+		end
+		dummy
+	end
+
+	def intersection trial, derivative, thresh
+		dummy = Hash.new
+		trial.each do |key, value|
+			deriv_val = 0.0
+			if derivative.key?(key)
+				deriv_val = derivative[key]
+			end
+			#compare the value in trial with deriv
+			if (((value - deriv_val).abs / value) < thresh)
+				dummy.store(key, value)
+			end
+		end
+		dummy
 	end
 end

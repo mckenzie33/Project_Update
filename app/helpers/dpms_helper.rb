@@ -13,7 +13,7 @@ module DpmsHelper
 			line = line.split(",").collect {|x| x.strip}
 			noYcolumns = line.length-1
 			for t in 0...noYcolumns #iterate over Y columns in row
-				point[t] = [line[0].to_f, line[t+1].to_f] #get x,y1/2/3/...; save in point
+				point[t] = [line[0].to_f, line[t+1].to_f] #get x,y1/2/3/...; save in point	
 				graph.push(point[t]) #store each point in a graph
 			end
 			graphs.push(graph) #store graph created in graphs array
@@ -31,6 +31,13 @@ module DpmsHelper
 		graph
 	end
 
+	def getMaxMin(graph)
+		dummy=[]
+		dummy[0]=graph.values.max
+		dummy[1]=graph.values.min
+		dummy
+	end
+
 	def tp_strain trial, youngs
 		dummy = Hash.new
 		trial.each do |key, value| 
@@ -44,11 +51,20 @@ module DpmsHelper
 		end
 		dummy
 	end	
-
+	def rounder graph, precision
+		adam = Hash.new
+		graph.each do | key, value |
+			new_key = key.round(precision)
+			adam.store(new_key, value)
+		end
+		adam
+	end
 	def deriv trial
 		dummy = Hash.new
 		trial.sort
+		puts "trial key: ", trial.keys
 		keys = trial.keys
+		puts "keys: ", keys
 		values = trial.values
 		#getting derivative minus first and last points
 		for i in 1...keys.length - 2
