@@ -7,7 +7,11 @@
 -plot these 3 final graphs once they are calculated
 -->
 <% graph = create_hash(Rails.root.to_s.concat("/public").concat(@dpm.filename.url)) %>
-<% trial = graph[@dpm.graph_number - 1] %> 
+<% trial = graph[@dpm.graph_number - 1] %>
+<% new_trial = rounder(tp_strain(trial, @dpm.youngs_modulus)[1], 4) %>
+<% maxMin = getMaxMin(new_trial) %>
+<% hardstress = removePastX(new_trial, @dpm.necking_point)%>
+
 
 
 
@@ -17,32 +21,7 @@
 <%= line_chart graph.map.with_index {|ea, i| {:name => i+1, :data => ea}}, {discrete: true, library: {pointSize: 0, title: "Hardening Curve"}} %>
 </p>
 
-<%= form_for(@dpm, :url => step4_path(:id => @dpm.id), :method => 'put') do |f| %>
-  <% if @dpm.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@dpm.errors.count, "error") %> prohibited this dpm from being saved:</h2>
 
-      <ul>
-      <% @dpm.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-
-  <div class="field">
-  	<%= f.label :fitting_param %><br>
-    <%= f.number_field :fitting_param %>
-  </div>
-  <div class="field">
-    <%= f.label :threshold %><br>
-    <%= f.number_field :threshold %>
-  </div>
-   <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
 
 <%= link_to 'Edit', edit_dpm_path(@dpm) %> |
 <%= link_to 'Back', dpms_path %>

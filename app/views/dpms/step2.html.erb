@@ -5,21 +5,16 @@
 -have the user select a necking point
 -->
 <% graph = create_hash(Rails.root.to_s.concat("/public").concat(@dpm.filename.url)) %>
-
 <% trial = Marshal.load(Marshal.dump(graph[@dpm.graph_number - 1])) %>
-
 <% graph = []%>
-<% new_trial = rounder(tp_strain(trial, @dpm.youngs_modulus), 4) %>
+<% new_trial = rounder(tp_strain(trial, @dpm.youngs_modulus)[1], 4) %>
 <% maxMin = getMaxMin(new_trial) %>
 <% derivative = deriv(new_trial) %>
 <% graph << new_trial %>
 <% graph << derivative %>
 <% intersections = intersection(new_trial, derivative, 0.2)%>
-<%= intersections %>
-<strong>STEP 2:Filename:</strong>
+<strong>STEP 2: Choose a Necking Point</strong>
 <p>
-<%= maxMin %>
-
 <%= line_chart graph.map.with_index {|ea, i| {:name => i+1, :data => ea}}, {discrete: true, library: {pointSize: 0, title: "Tstress vs. Pstrain", vAxis: { viewWindow:{ max:maxMin[0]*1.1, min:maxMin[1]}}}}%>
 </p>
 
@@ -35,7 +30,8 @@
       </ul>
     </div>
   <% end %>
-
+  <p>Recommended Necking Points</p>
+<p></p>
   <p><%= intersections %></p>
   <div class="field">
   	<%= f.label :necking_point %><br>
@@ -47,4 +43,5 @@
 <% end %>
 
 <%= link_to 'Edit', edit_dpm_path(@dpm) %> |
-<%= link_to 'Back', dpms_path %>
+
+<!-- TODO: have links going to the right places -->

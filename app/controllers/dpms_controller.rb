@@ -45,7 +45,7 @@ class DpmsController < ApplicationController
   def update
     respond_to do |format|
       if @dpm.update(dpm_params)  
-        format.html { redirect_to @dpm, notice: 'Dpm was successfully updated.' }
+        format.html { render '/dpms/step1', notice: 'Dpm was successfully updated.' }
         format.json { head :no_content }  
       else
         format.html { render action: 'edit' }

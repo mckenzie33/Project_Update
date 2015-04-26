@@ -19,7 +19,7 @@ CapstoneHonda::Application.routes.draw do
 
   match '/step1', to: 'dpms#step1', via: 'patch'
   match '/step1', to: 'dpms#step1', via: 'put'
-
+  match '/step1', to: 'dpms#step1', via: 'get'
   match '/step2', to: 'dpms#step2', via: 'patch'
   match '/step2', to: 'dpms#step2', via: 'put'
 

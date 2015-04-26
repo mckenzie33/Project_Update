@@ -1,6 +1,27 @@
-<h1>Editing dpm</h1>
+<h1>Change Input File</h1>
 
-<%= render 'form' %>
+<%= form_for(@dpm, :url => dpm_path(:id => @dpm.id), :method => 'put') do |f| %>
+  <% if @dpm.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@dpm.errors.count, "error") %> prohibited this dpm from being saved:</h2>
 
-<%= link_to 'Show', @dpm %> |
-<%= link_to 'Back', dpms_path %>
+      <ul>
+      <% @dpm.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+ 
+  <div class="field">
+  	<%= f.label :filename %><br>
+    <%= f.file_field :filename %>
+  </div>
+
+
+  <div class="actions">
+    <%= f.submit "Change Input File" %>
+  </div>
+<% end %>
+

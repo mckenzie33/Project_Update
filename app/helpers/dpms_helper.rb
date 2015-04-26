@@ -51,19 +51,31 @@ module DpmsHelper
 		dummy
 	end
 
-	#TODO: change this to two functions: getTstrain and getPstrain
+
+# 	tstrain=log(1+strain); tstress=stress.*(1+strain);
+# %Subtract out elastic region of curve
+# pstrain=tstrain-(tstress./E);
+
+	#this functions returns the tstrain (array) 
+	#and pstrain vs tstress (hash) values
+	#trial is a hash 
+	#youngs is youngs modulus to calculate tstress
+	#the return value is a hash [tstrain pstrainvststress]
 	def tp_strain trial, youngs
-		dummy = Hash.new
+		tstrain = Array.new
+		pstrain = Hash.new
 		trial.each do |key, value| 
 			#change stress values first (y values)
 			new_value = value * (1 + key)
 			#change the strain values to tstrain values
 			new_key = Math.log(1 + key)
+			#add the tstrain values to the array
+			tstrain << new_key
 			#change the tstrain to pstrain
 			new_key = new_key - (new_value / (youngs * 1000))
-			dummy.store(new_key, new_value)
+			pstrain.store(new_key, new_value)
 		end
-		dummy
+		return [tstrain, pstrain]
 	end	
 
 	def rounder graph, precision
@@ -202,7 +214,7 @@ module DpmsHelper
 		rtn = Hash.new
 		myhash.each do |key, value|
 			if key < xval
-				rtn.store (key, value)
+				rtn.store(key, value)
 			end	
 		end
 		rtn
@@ -210,10 +222,12 @@ module DpmsHelper
 
 	#make sure that all of these values make sense
 	#TODO: test the output
-	def getSystemVars stress, pstress, tstress, neck, gauge, fitparam, youngs
+	def getSystemVars stress, pstress, tstrain, hardstress, neckingpoint, gauge, fitparam, youngs
+		#get the index of the last point 
+		neckindex = hardstress.length - 1
 		df = getLastPoint(pstrain)[0]
-		dn = neck
-		sigma_n = tstress[neck]
+		dn = tstrain.sort[neckindex]
+		sigma_n = pstress[neckingpoint]
 		laststresspoint = getLastPoint(stress)
 		sigma_ef = laststresspoint[1]
 		eps_en = laststresspoint[0]
@@ -259,6 +273,11 @@ module DpmsHelper
 		end
 		rtn
 	end
+
+
+	#this function returns the necking index
+
+end
 	#create (500 - size) more points, equally spaced x's
 	    #starting at the end of hardstress graph
 	#use the k's, n's, eps_o's from above to get three graphs
