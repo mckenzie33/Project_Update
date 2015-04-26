@@ -120,6 +120,5 @@ class DpmsController < ApplicationController
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def dpm_params
-      params.require(:dpm).permit(:filename, :graph_number, :youngs_modulus, :gauge_length, :necking_point, :fitting_param, :threshold) #fetch(:dpm, {}).permit(:filename)
-    end
+      params.require(:dpm).permit(:filename, :graph_number, :youngs_modulus, :gauge_length, :necking_point, :fitting_param, :threshold)     end
   end

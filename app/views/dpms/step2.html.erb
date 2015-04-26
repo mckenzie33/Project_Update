@@ -39,7 +39,7 @@
   <p><%= intersections %></p>
   <div class="field">
   	<%= f.label :necking_point %><br>
-    <%= f.number_field :necking_point %>
+    <%= f.number_field :necking_point, :step => 'any' %>
   </div>
   <div class="actions">
     <%= f.submit %>
